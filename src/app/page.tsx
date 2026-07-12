@@ -8,6 +8,7 @@ import { MouseTrail } from "@/components/effects/MouseTrail";
 import { Reveal } from "@/components/motion/Reveal";
 import { ScrollCue } from "@/components/hero/ScrollCue";
 import { AnimatedGradientBackground } from "@/components/hero/AnimatedGradientBackground";
+import { GridBackground } from "@/components/hero/GridBackground";
 import { SocialLinks } from "@/components/social/SocialLinks";
 import { Container } from "@/components/ui/Container";
 import type { BioContent } from "@/types/database";
@@ -75,6 +76,7 @@ export default async function HeroPage() {
   return (
     <>
       <MouseTrail />
+      <GridBackground />
       <AnimatedGradientBackground />
       <main className="relative overflow-hidden">
         {/* Hero */}
