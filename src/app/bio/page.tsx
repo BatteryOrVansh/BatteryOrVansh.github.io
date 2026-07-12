@@ -137,9 +137,16 @@ export default async function BioPage() {
           </div>
         </div>
 
-        <p className="mt-6 text-center font-mono text-xs text-[#555]">
-          made with notepad.exe &amp; ambition — est. this century
-        </p>
+        <div className="win95-bevel-out mt-6 flex flex-col items-center gap-2 p-4 text-center">
+          <div className="caution-stripes h-2 w-full max-w-xs" />
+          <p className="animate-construction-blink text-xs font-bold uppercase tracking-wide text-[#800000]">
+            &#9888; this page is always under construction &#9888;
+          </p>
+          <div className="caution-stripes h-2 w-full max-w-xs" />
+          <p className="mt-2 text-xs text-[#555]">
+            made with notepad.exe &amp; ambition — est. this century
+          </p>
+        </div>
       </Container>
     </main>
   );
