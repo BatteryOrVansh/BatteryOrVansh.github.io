@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
 import { RightNav } from "@/components/nav/RightNav";
 import { AudioPlayerProvider } from "@/components/audio/AudioPlayerProvider";
+import { Footer } from "@/components/layout/Footer";
+import { HideOnAdmin } from "@/components/layout/HideOnAdmin";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -28,10 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable} h-full antialiased`}>
-      <body className="min-h-full bg-bg text-fg">
+      <body className="flex min-h-full flex-col bg-bg text-fg">
         <RightNav />
         <AudioPlayerProvider />
-        {children}
+        <div className="flex-1">{children}</div>
+        <HideOnAdmin>
+          <Footer />
+        </HideOnAdmin>
       </body>
     </html>
   );
