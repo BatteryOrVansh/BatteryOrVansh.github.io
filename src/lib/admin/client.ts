@@ -1,4 +1,4 @@
-import { firebaseAuth } from "@/lib/firebase/client";
+import { getFirebaseAuth } from "@/lib/firebase/client";
 
 /**
  * Browser-side fetch helper for admin API routes. Attaches the current
@@ -7,7 +7,7 @@ import { firebaseAuth } from "@/lib/firebase/client";
  * no authorization logic of its own, only plumbing.
  */
 export async function adminFetch(path: string, init: RequestInit = {}): Promise<Response> {
-  const user = firebaseAuth.currentUser;
+  const user = getFirebaseAuth().currentUser;
   if (!user) {
     throw new Error("Not signed in.");
   }

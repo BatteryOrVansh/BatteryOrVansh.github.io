@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/admin/verify-request";
 import { adminAuthErrorResponse, jsonError } from "@/lib/admin/api-helpers";
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { getSupabaseAdmin } from "@/lib/supabase/server";
 
 type ProjectInput = {
   title?: unknown;
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
   const normalized = normalizeProjectInput(body);
   if (!normalized.ok) return jsonError(normalized.error, 400);
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await getSupabaseAdmin()
     .from("projects")
     .insert(normalized.value)
     .select()
