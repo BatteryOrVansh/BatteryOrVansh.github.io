@@ -3,6 +3,8 @@ import { BlobBackground } from "@/components/blobs/BlobBackground";
 import { Container } from "@/components/ui/Container";
 import type { Project } from "@/types/database";
 
+export const revalidate = 0;
+
 async function getProjects(): Promise<Project[]> {
   const { data } = await supabase
     .from("projects")

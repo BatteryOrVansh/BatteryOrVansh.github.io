@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/admin/verify-request";
 import { adminAuthErrorResponse, jsonError } from "@/lib/admin/api-helpers";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
@@ -75,5 +76,6 @@ export async function POST(request: NextRequest) {
 
   if (error) return jsonError(error.message, 500);
 
+  revalidatePath("/projects");
   return NextResponse.json({ project: data }, { status: 201 });
 }
