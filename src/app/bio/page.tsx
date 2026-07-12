@@ -2,6 +2,8 @@ import { supabase } from "@/lib/supabase/client";
 import { Container } from "@/components/ui/Container";
 import type { BioContent } from "@/types/database";
 
+export const revalidate = 0;
+
 async function getBioContent(): Promise<Record<string, string>> {
   const { data } = await supabase.from("bio_content").select("key, value");
 

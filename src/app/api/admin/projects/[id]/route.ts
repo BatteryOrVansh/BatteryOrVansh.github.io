@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/admin/verify-request";
 import { adminAuthErrorResponse, jsonError } from "@/lib/admin/api-helpers";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
@@ -93,6 +94,7 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
 
   if (error) return jsonError(error.message, 500);
 
+  revalidatePath("/projects");
   return NextResponse.json({ project: data });
 }
 
@@ -108,5 +110,6 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
   const { error } = await getSupabaseAdmin().from("projects").delete().eq("id", id);
   if (error) return jsonError(error.message, 500);
 
+  revalidatePath("/projects");
   return NextResponse.json({ success: true });
 }

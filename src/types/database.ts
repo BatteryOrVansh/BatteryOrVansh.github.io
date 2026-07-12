@@ -20,3 +20,22 @@ export type SiteSetting = {
   key: string;
   value: string | null;
 };
+
+export type SocialLink = {
+  id: string;
+  platform: string;
+  label: string | null;
+  url: string;
+  sort_order: number;
+  is_active: boolean;
+  created_at: string;
+};
+
+export type MusicTrack = {
+  id: string;
+  title: string;
+  file_url: string;
+  is_active: boolean;
+  sort_order: number;
+  created_at: string;
+};

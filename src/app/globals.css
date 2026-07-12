@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #050505;
-  --bg-elevated: #0d0d0e;
-  --fg: #f7f5f3;
-  --fg-muted: #9a9a9d;
-  --red: #ff2b43;
-  --red-dim: #7a0f1c;
-  --red-glow: #ff5c6c;
-  --border: rgba(255, 255, 255, 0.09);
+  --bg: #ffffff;
+  --bg-elevated: #f8f7f5;
+  --fg: #0a0a0a;
+  --fg-muted: #6b6b70;
+  --red: #e8283f;
+  --red-dim: #ffe3e5;
+  --red-glow: #ff6b7a;
+  --border: rgba(10, 10, 10, 0.09);
   --ease-google: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @theme inline {
@@ -27,18 +28,31 @@
 
 html {
   background: var(--bg);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
+  position: relative;
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
 }
 
+/* Faint grain so the white background doesn't read as flat #FFFFFF template stock. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 ::selection {
   background: var(--red);
-  color: #0a0a0a;
+  color: #fff;
 }
 
 .font-headline {
@@ -59,6 +73,37 @@ body {
 
 .animate-blob-drift {
   animation: blob-drift 18s var(--ease-google) infinite;
+}
+
+/* Idle/scroll organic morph — two path states with matching command structure
+   so the browser can interpolate `d` directly instead of a hard cut. */
+@keyframes blob-morph-a {
+  0%,
+  100% {
+    d: path("M421.5,314.5Q407,429,297.5,438.5Q188,448,133,343.5Q78,239,168.5,157.5Q259,76,357,123.5Q455,171,451,242.5Q447,314,421.5,314.5Z");
+  }
+  50% {
+    d: path("M438,300Q437,400,350,450Q263,500,170,455Q77,410,80,300Q83,190,175,140Q267,90,355,140Q443,190,438,300Z");
+  }
+}
+
+@keyframes blob-morph-b {
+  0%,
+  100% {
+    d: path("M447,300Q447,394,362.5,443.5Q278,493,183,451Q88,409,90.5,304.5Q93,200,190,153.5Q287,107,367,163Q447,219,447,300Z");
+  }
+  50% {
+    d: path("M430,290Q460,380,375,430Q290,480,195,440Q100,400,95,290Q90,180,185,145Q280,110,365,150Q450,190,430,290Z");
+  }
+}
+
+.animate-blob-morph-a {
+  animation: blob-morph-a 24s var(--ease-google) infinite;
+}
+
+.animate-blob-morph-b {
+  animation: blob-morph-b 20s var(--ease-google) infinite;
+  animation-delay: -8s;
 }
 
 @keyframes reveal-up {
@@ -94,10 +139,29 @@ body {
   animation: marquee-scroll var(--marquee-duration) linear infinite;
 }
 
+@keyframes attention-pulse {
+  0%,
+  100% {
+    transform: scale(1) translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15) translateX(-3px);
+    opacity: 0.7;
+  }
+}
+
+.animate-attention-pulse {
+  animation: attention-pulse 1s var(--ease-google) 4;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-blob-drift,
+  .animate-blob-morph-a,
+  .animate-blob-morph-b,
   .animate-reveal-up,
-  .animate-marquee {
+  .animate-marquee,
+  .animate-attention-pulse {
     animation: none;
   }
 }

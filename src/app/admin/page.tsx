@@ -9,11 +9,12 @@ import { ProjectsPanel } from "@/components/admin/ProjectsPanel";
 import { BioPanel } from "@/components/admin/BioPanel";
 import { HeroInterestsPanel } from "@/components/admin/HeroInterestsPanel";
 import { MusicPanel } from "@/components/admin/MusicPanel";
+import { SocialLinksPanel } from "@/components/admin/SocialLinksPanel";
 import { primaryButtonClass, secondaryButtonClass } from "@/components/admin/ui";
 
 type AuthStatus = "loading" | "signed-out" | "checking" | "denied" | "allowed";
 
-const TABS = ["Projects", "Bio", "Hero interests", "Music"] as const;
+const TABS = ["Projects", "Bio", "Hero interests", "Social links", "Music"] as const;
 type Tab = (typeof TABS)[number];
 
 export default function AdminPage() {
@@ -138,6 +139,7 @@ export default function AdminPage() {
           {activeTab === "Projects" && <ProjectsPanel />}
           {activeTab === "Bio" && <BioPanel />}
           {activeTab === "Hero interests" && <HeroInterestsPanel />}
+          {activeTab === "Social links" && <SocialLinksPanel />}
           {activeTab === "Music" && <MusicPanel />}
         </div>
       </Container>
