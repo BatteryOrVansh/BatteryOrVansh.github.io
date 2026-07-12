@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Pause, Play, SkipBack, SkipForward } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 import type { MusicTrack } from "@/types/database";
 
@@ -81,6 +82,15 @@ export function AudioPlayerProvider() {
     setCurrentTrack(queueRef.current[nextIndex]);
   }
 
+  function playPrevious() {
+    if (queueRef.current.length === 0) return;
+
+    const prevIndex =
+      queueIndexRef.current === 0 ? queueRef.current.length - 1 : queueIndexRef.current - 1;
+    queueIndexRef.current = prevIndex;
+    setCurrentTrack(queueRef.current[prevIndex]);
+  }
+
   // Whenever the current track changes (initial load or advancing to the
   // next queued track) resume playback automatically if we were mid-session.
   useEffect(() => {
@@ -109,38 +119,46 @@ export function AudioPlayerProvider() {
   return (
     <>
       <audio ref={audioRef} src={currentTrack.file_url} preload="none" onEnded={playNext} />
-      <button
-        type="button"
-        onClick={toggle}
-        aria-label={isPlaying ? "Pause background music" : "Play background music"}
-        aria-pressed={isPlaying}
-        className={`fixed right-4 top-4 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-border bg-bg-elevated text-fg shadow-lg transition-transform duration-300 ease-[var(--ease-google)] hover:scale-105 sm:right-8 sm:top-6 ${
+      <div
+        className={`fixed right-4 top-4 z-50 sm:right-8 sm:top-6 ${
           showAttention ? "animate-attention-pulse" : ""
         }`}
       >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          className={`transition-transform duration-300 ${isPlaying ? "" : "translate-x-0.5"}`}
-        >
-          {isPlaying ? (
-            <g stroke="var(--red)" strokeWidth="2.5" strokeLinecap="round">
-              <line x1="8" y1="6" x2="8" y2="18" />
-              <line x1="16" y1="6" x2="16" y2="18" />
-            </g>
-          ) : (
-            <path
-              d="M5 3.5L20 12L5 20.5V3.5Z"
-              fill="var(--red)"
-              stroke="var(--red)"
-              strokeWidth="1.5"
-              strokeLinejoin="round"
-            />
-          )}
-        </svg>
-      </button>
+        <div className="flex items-center gap-0.5 rounded-full border border-border bg-bg-elevated/95 py-1.5 pl-1.5 pr-1.5 shadow-lg backdrop-blur transition-transform duration-300 ease-[var(--ease-google)] hover:scale-[1.02] sm:pr-3">
+          <button
+            type="button"
+            onClick={playPrevious}
+            aria-label="Previous track"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-fg-muted transition-colors duration-200 hover:text-fg"
+          >
+            <SkipBack className="h-3.5 w-3.5" fill="currentColor" />
+          </button>
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={isPlaying ? "Pause background music" : "Play background music"}
+            aria-pressed={isPlaying}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red text-bg transition-transform duration-300 ease-[var(--ease-google)] hover:scale-105"
+          >
+            {isPlaying ? (
+              <Pause className="h-4 w-4" fill="currentColor" />
+            ) : (
+              <Play className="h-4 w-4 translate-x-0.5" fill="currentColor" />
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={playNext}
+            aria-label="Next track"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-fg-muted transition-colors duration-200 hover:text-fg"
+          >
+            <SkipForward className="h-3.5 w-3.5" fill="currentColor" />
+          </button>
+          <span className="ml-1 hidden max-w-[110px] truncate font-headline text-xs font-medium text-fg-muted sm:ml-2 sm:inline">
+            {currentTrack.title}
+          </span>
+        </div>
+      </div>
     </>
   );
 }
