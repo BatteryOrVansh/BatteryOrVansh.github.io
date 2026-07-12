@@ -12,6 +12,7 @@ const ALLOWED_BIO_KEYS = [
   "contact",
   "links",
   "certifications",
+  "technical_skills",
 ] as const;
 
 async function upsertBio(request: NextRequest) {
@@ -43,6 +44,7 @@ async function upsertBio(request: NextRequest) {
   if (error) return jsonError(error.message, 500);
 
   revalidatePath("/bio");
+  revalidatePath("/");
   return NextResponse.json({ bio: data });
 }
 
