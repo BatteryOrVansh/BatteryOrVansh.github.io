@@ -11,6 +11,7 @@ import {
   inputClass,
   labelClass,
   primaryButtonClass,
+  secondaryButtonClass,
 } from "@/components/admin/ui";
 
 type ProjectFormState = {
@@ -42,6 +43,39 @@ function projectToForm(project: Project): ProjectFormState {
   };
 }
 
+/**
+ * Parses a GitHub repo reference in any of the common shapes an admin might
+ * paste — a full URL, a bare "github.com/..." host, or just "owner/repo" —
+ * and returns the owner/repo pair, or null if it doesn't look like one.
+ */
+function parseGithubRepoUrl(input: string): { owner: string; repo: string } | null {
+  const trimmed = input.trim();
+  if (!trimmed) return null;
+
+  const rest = trimmed
+    .replace(/^https?:\/\//i, "")
+    .replace(/^www\./i, "")
+    .replace(/^github\.com\//i, "")
+    .replace(/^\/+/, "")
+    .replace(/\/+$/, "")
+    .replace(/\.git$/i, "");
+
+  const [owner, repo] = rest.split("/").filter(Boolean);
+  if (!owner || !repo) return null;
+  if (!/^[A-Za-z0-9_.-]+$/.test(owner) || !/^[A-Za-z0-9_.-]+$/.test(repo)) return null;
+
+  return { owner, repo };
+}
+
+/** Turns a repo slug like "glide-upskill" into "Glide Upskill" for a friendlier default title. */
+function prettifyRepoName(repo: string): string {
+  return repo
+    .split(/[-_]+/)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 function formToPayload(form: ProjectFormState) {
   return {
     title: form.title.trim(),
@@ -64,6 +98,10 @@ export function ProjectsPanel() {
   const [creating, setCreating] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
   const [refreshIndex, setRefreshIndex] = useState(0);
+  const [githubUrl, setGithubUrl] = useState("");
+  const [githubFetching, setGithubFetching] = useState(false);
+  const [githubError, setGithubError] = useState<string | null>(null);
+  const [githubSuccess, setGithubSuccess] = useState<string | null>(null);
 
   const refresh = useCallback(() => setRefreshIndex((n) => n + 1), []);
 
@@ -111,6 +149,50 @@ export function ProjectsPanel() {
     }
   }
 
+  async function handleFetchFromGithub() {
+    setGithubError(null);
+    setGithubSuccess(null);
+
+    const parsed = parseGithubRepoUrl(githubUrl);
+    if (!parsed) {
+      setGithubError(
+        "Enter a valid GitHub repo, e.g. https://github.com/owner/repo, github.com/owner/repo, or owner/repo."
+      );
+      return;
+    }
+
+    setGithubFetching(true);
+    try {
+      const res = await fetch(`https://api.github.com/repos/${parsed.owner}/${parsed.repo}`);
+
+      if (res.status === 404) {
+        setGithubError("That repository wasn't found on GitHub.");
+        return;
+      }
+      if (res.status === 403) {
+        setGithubError("GitHub API rate limit hit — wait a bit and try again.");
+        return;
+      }
+      if (!res.ok) {
+        setGithubError(`GitHub API error (${res.status}).`);
+        return;
+      }
+
+      const data = await res.json();
+      setNewProject((f) => ({
+        ...f,
+        title: data.name ? prettifyRepoName(data.name) : f.title,
+        description: data.description ?? f.description,
+        link: data.html_url ?? f.link,
+      }));
+      setGithubSuccess("Fetched from GitHub — review the fields below before saving.");
+    } catch {
+      setGithubError("Couldn't reach GitHub. Check your connection and try again.");
+    } finally {
+      setGithubFetching(false);
+    }
+  }
+
   async function handleDelete(id: string) {
     if (!confirm("Delete this project? This cannot be undone.")) return;
     try {
@@ -125,6 +207,30 @@ export function ProjectsPanel() {
     <div className="flex flex-col gap-8">
       <Panel title="Add project" description="Appears on the public /projects page once saved.">
         <form onSubmit={handleCreate} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="rounded-xl border border-dashed border-border p-4 sm:col-span-2">
+            <label className={labelClass} htmlFor="github-import">
+              Import from GitHub
+            </label>
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <input
+                id="github-import"
+                className={inputClass}
+                placeholder="github.com/owner/repo"
+                value={githubUrl}
+                onChange={(e) => setGithubUrl(e.target.value)}
+              />
+              <button
+                type="button"
+                disabled={githubFetching}
+                onClick={handleFetchFromGithub}
+                className={`${secondaryButtonClass} shrink-0`}
+              >
+                {githubFetching ? "Fetching…" : "Fetch from GitHub"}
+              </button>
+            </div>
+            {githubError && <StatusMessage message={githubError} tone="error" />}
+            {githubSuccess && <StatusMessage message={githubSuccess} tone="success" />}
+          </div>
           <div className="sm:col-span-2">
             <label className={labelClass} htmlFor="new-title">
               Title
