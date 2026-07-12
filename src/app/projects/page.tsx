@@ -28,11 +28,11 @@ export default async function ProjectsPage() {
           Things I&apos;ve built.
         </h1>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
           {projects.map((project, index) => (
             <article
               key={project.id}
-              className="animate-reveal-up group relative overflow-hidden rounded-[2rem] border border-border bg-bg-elevated p-8 transition-transform duration-300 ease-[var(--ease-google)] hover:-translate-y-1"
+              className="animate-reveal-up group relative overflow-hidden rounded-[2rem] border border-border bg-bg-elevated p-8 shadow-[0_1px_2px_rgba(10,10,10,0.04),0_24px_48px_-28px_rgba(10,10,10,0.18)] transition-[transform,box-shadow,border-color] duration-300 ease-[var(--ease-google)] hover:-translate-y-1 hover:border-red-dim hover:shadow-[0_1px_2px_rgba(10,10,10,0.05),0_32px_56px_-24px_rgba(10,10,10,0.22)] sm:p-10"
               style={{ animationDelay: `${index * 90}ms` }}
             >
               {project.status && (
@@ -65,7 +65,10 @@ export default async function ProjectsPage() {
                   rel="noopener noreferrer"
                   className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-red"
                 >
-                  View project →
+                  View project
+                  <span className="transition-transform duration-300 ease-[var(--ease-google)] group-hover:translate-x-1">
+                    →
+                  </span>
                 </a>
               )}
             </article>
