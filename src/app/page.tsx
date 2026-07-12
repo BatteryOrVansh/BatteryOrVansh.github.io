@@ -5,6 +5,9 @@ import { BackgroundShapes } from "@/components/ui/background-shapes";
 import { TechStackBuilder } from "@/components/ui/interactive-tech-stack-builder";
 import { StreakCards } from "@/components/skills/StreakCards";
 import { MouseTrail } from "@/components/effects/MouseTrail";
+import { Reveal } from "@/components/motion/Reveal";
+import { ScrollCue } from "@/components/hero/ScrollCue";
+import { AnimatedGradientBackground } from "@/components/hero/AnimatedGradientBackground";
 import { SocialLinks } from "@/components/social/SocialLinks";
 import { Container } from "@/components/ui/Container";
 import type { BioContent } from "@/types/database";
@@ -72,6 +75,7 @@ export default async function HeroPage() {
   return (
     <>
       <MouseTrail />
+      <AnimatedGradientBackground />
       <main className="relative overflow-hidden">
         {/* Hero */}
         <section className="relative flex min-h-screen flex-col overflow-hidden">
@@ -89,6 +93,7 @@ export default async function HeroPage() {
               <SocialLinks links={socialLinks} />
             </Container>
           </div>
+          <ScrollCue />
         </section>
 
         {/* Technical skills */}
@@ -97,40 +102,48 @@ export default async function HeroPage() {
             <BackgroundShapes width={1000} height={600} colors={["currentColor"]} className="h-full w-full" />
           </div>
           <Container>
-            <p className={EYEBROW_CLASS}>Skills</p>
-            <h2 className={SECTION_HEADING_CLASS}>What I work with.</h2>
-            {skills.length > 0 && (
-              <ul className="mt-10 flex flex-wrap gap-3">
-                {skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="rounded-full border border-border bg-bg-elevated px-4 py-2 text-sm font-medium text-fg"
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <Reveal>
+              <p className={EYEBROW_CLASS}>Skills</p>
+              <h2 className={SECTION_HEADING_CLASS}>What I work with.</h2>
+              {skills.length > 0 && (
+                <ul className="mt-10 flex flex-wrap gap-3">
+                  {skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-full border border-border bg-bg-elevated px-4 py-2 text-sm font-medium text-fg"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </Reveal>
           </Container>
         </section>
 
         {/* Interactive tech stack */}
         <section className="border-t border-border py-28">
           <Container>
-            <p className={EYEBROW_CLASS}>Stack</p>
-            <h2 className={SECTION_HEADING_CLASS}>Build my stack.</h2>
+            <Reveal>
+              <p className={EYEBROW_CLASS}>Stack</p>
+              <h2 className={SECTION_HEADING_CLASS}>Build my stack.</h2>
+            </Reveal>
           </Container>
-          <TechStackBuilder className="mt-6" />
+          <Reveal delay={0.1}>
+            <TechStackBuilder className="mt-6" />
+          </Reveal>
         </section>
 
         {/* GitHub / LeetCode streaks */}
         <section className="border-t border-border py-28">
           <Container>
-            <p className={EYEBROW_CLASS}>Consistency</p>
-            <h2 className={SECTION_HEADING_CLASS}>GitHub &amp; LeetCode streaks.</h2>
-            <div className="mt-10">
-              <StreakCards />
-            </div>
+            <Reveal>
+              <p className={EYEBROW_CLASS}>Consistency</p>
+              <h2 className={SECTION_HEADING_CLASS}>GitHub &amp; LeetCode streaks.</h2>
+              <div className="mt-10">
+                <StreakCards />
+              </div>
+            </Reveal>
           </Container>
         </section>
 
@@ -138,18 +151,20 @@ export default async function HeroPage() {
         {certifications.length > 0 && (
           <section className="border-t border-border py-28">
             <Container>
-              <p className={EYEBROW_CLASS}>Certifications</p>
-              <h2 className={SECTION_HEADING_CLASS}>Credentials.</h2>
-              <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {certifications.map((cert) => (
-                  <div
-                    key={cert}
-                    className="rounded-2xl border border-border bg-bg-elevated p-6 text-sm font-medium leading-relaxed text-fg shadow-[0_1px_2px_rgba(10,10,10,0.04),0_24px_48px_-28px_rgba(10,10,10,0.18)]"
-                  >
-                    {cert}
-                  </div>
-                ))}
-              </div>
+              <Reveal>
+                <p className={EYEBROW_CLASS}>Certifications</p>
+                <h2 className={SECTION_HEADING_CLASS}>Credentials.</h2>
+                <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {certifications.map((cert) => (
+                    <div
+                      key={cert}
+                      className="rounded-2xl border border-border bg-bg-elevated p-6 text-sm font-medium leading-relaxed text-fg shadow-[0_1px_2px_rgba(10,10,10,0.04),0_24px_48px_-28px_rgba(10,10,10,0.18)]"
+                    >
+                      {cert}
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
             </Container>
           </section>
         )}
@@ -158,21 +173,23 @@ export default async function HeroPage() {
         {achievements.length > 0 && (
           <section className="border-t border-border py-28">
             <Container>
-              <p className={EYEBROW_CLASS}>Hackathons &amp; achievements</p>
-              <h2 className={SECTION_HEADING_CLASS}>Where it&apos;s been tested.</h2>
-              <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                {achievements.map((project) => (
-                  <div
-                    key={project.title}
-                    className="rounded-2xl border border-border bg-bg-elevated p-6 shadow-[0_1px_2px_rgba(10,10,10,0.04),0_24px_48px_-28px_rgba(10,10,10,0.18)]"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-wide text-red">
-                      {project.status}
-                    </p>
-                    <p className="mt-2 text-sm font-medium text-fg">{project.title}</p>
-                  </div>
-                ))}
-              </div>
+              <Reveal>
+                <p className={EYEBROW_CLASS}>Hackathons &amp; achievements</p>
+                <h2 className={SECTION_HEADING_CLASS}>Where it&apos;s been tested.</h2>
+                <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  {achievements.map((project) => (
+                    <div
+                      key={project.title}
+                      className="rounded-2xl border border-border bg-bg-elevated p-6 shadow-[0_1px_2px_rgba(10,10,10,0.04),0_24px_48px_-28px_rgba(10,10,10,0.18)]"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-wide text-red">
+                        {project.status}
+                      </p>
+                      <p className="mt-2 text-sm font-medium text-fg">{project.title}</p>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
             </Container>
           </section>
         )}
@@ -180,17 +197,19 @@ export default async function HeroPage() {
         {/* Get in touch */}
         <section className="border-t border-border py-28">
           <Container className="flex flex-col items-center text-center">
-            <p className={EYEBROW_CLASS}>Get in touch</p>
-            <h2 className="font-headline mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
-              Let&apos;s build something.
-            </h2>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="font-headline mt-8 inline-flex items-center gap-3 rounded-full bg-red px-7 py-3.5 text-base font-semibold text-bg transition-transform duration-300 ease-[var(--ease-google)] hover:scale-[1.03]"
-            >
-              {CONTACT_EMAIL}
-            </a>
-            <SocialLinks links={socialLinks} className="mt-8 justify-center" />
+            <Reveal className="flex flex-col items-center">
+              <p className={EYEBROW_CLASS}>Get in touch</p>
+              <h2 className="font-headline mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
+                Let&apos;s build something.
+              </h2>
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="font-headline mt-8 inline-flex items-center gap-3 rounded-full bg-red px-7 py-3.5 text-base font-semibold text-bg transition-transform duration-300 ease-[var(--ease-google)] hover:scale-[1.03]"
+              >
+                {CONTACT_EMAIL}
+              </a>
+              <SocialLinks links={socialLinks} className="mt-8 justify-center" />
+            </Reveal>
           </Container>
         </section>
       </main>
