@@ -96,6 +96,10 @@ npx vercel --prod
 
 Or connect the GitHub repo directly in the Vercel dashboard (Import Project → select this repo) and add the same environment variables under Project Settings → Environment Variables. Every push to `main` then deploys automatically.
 
+### Keeping the free Supabase project from auto-pausing
+
+Supabase pauses Free Plan projects after about 7 days with no database activity. `vercel.json` already defines a daily cron job (`0 6 * * *` — the maximum frequency allowed on Vercel's free Hobby plan) hitting `GET /api/cron/keep-alive`, which does a trivial read against `site_settings` — comfortably often enough to never hit the 7-day window. It works automatically once the project is deployed on Vercel (cron jobs are picked up from `vercel.json` on deploy), no extra setup required. Optionally set `CRON_SECRET` (any random string) in both `.env.local` and the Vercel project's environment variables — Vercel then sends it automatically as a Bearer token when invoking the cron, so the endpoint rejects any other caller. If a project does pause anyway (e.g. before the first deploy), resume it manually from the Supabase dashboard — data isn't lost for 90 days after pausing.
+
 ## Custom domain (Namecheap, via GitHub Student Developer Pack)
 
 1. In Vercel: Project → Settings → Domains → add your domain.
