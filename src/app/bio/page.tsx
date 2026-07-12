@@ -29,21 +29,29 @@ export default async function BioPage() {
   const bio = await getBioContent();
 
   return (
-    <main className="bio-90s min-h-screen bg-[#0a0a12] py-24 text-[#e0e0e0]">
-      <div className="overflow-hidden border-y-4 border-dashed border-fuchsia-500 bg-black py-2">
-        <div className="animate-marquee flex w-max gap-16 whitespace-nowrap font-mono text-sm text-fuchsia-400">
+    <main className="bio-90s min-h-screen py-24">
+      <div className="overflow-hidden border-y-4 border-double border-black bg-black py-2">
+        <div className="animate-marquee flex w-max gap-16 whitespace-nowrap text-sm font-bold text-[#ffcc00]">
           {Array.from({ length: 2 }).map((_, i) => (
             <span key={i}>
               ★ WELCOME TO VANSH DIXIT&apos;S HOMEPAGE ★ BEST VIEWED AT ANY RESOLUTION ★ THANKS
-              FOR VISITING ★
+              FOR VISITING ★ SIGN THE GUESTBOOK ★
             </span>
           ))}
         </div>
       </div>
 
-      <Container className="mt-16">
-        <div className="border-4 border-cyan-400 bg-[#12121c] p-8 shadow-[8px_8px_0_0_#ff2b43]">
-          <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start">
+      <Container className="mt-10">
+        <div className="win95-bevel-out">
+          {/* Fake title bar, like the app window this whole page is cosplaying as */}
+          <div className="flex items-center justify-between bg-[#000080] px-2 py-1">
+            <span className="text-sm font-bold tracking-wide text-white">
+              vansh_dixit_homepage.htm
+            </span>
+            <span className="text-xs text-white opacity-80">_ &#9633; X</span>
+          </div>
+
+          <div className="flex flex-col items-center gap-8 p-6 sm:flex-row sm:items-start">
             <div className="h-40 w-40 shrink-0 overflow-hidden border-4 border-yellow-300 bg-[#1a1a24]">
               {bio.photo_url ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -107,6 +115,7 @@ export default async function BioPage() {
               </h2>
               <p className="mt-3 font-mono text-sm text-[#c9c9d4]">{bio.links}</p>
             </section>
+          </div>
           </div>
         </div>
 
