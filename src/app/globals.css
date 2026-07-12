@@ -29,6 +29,13 @@
 html {
   background: var(--bg);
   color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -73,6 +80,7 @@ body::before {
 
 .animate-blob-drift {
   animation: blob-drift 18s var(--ease-google) infinite;
+  will-change: transform;
 }
 
 /* Idle/scroll organic morph — two path states with matching command structure
@@ -99,11 +107,13 @@ body::before {
 
 .animate-blob-morph-a {
   animation: blob-morph-a 24s var(--ease-google) infinite;
+  will-change: d;
 }
 
 .animate-blob-morph-b {
   animation: blob-morph-b 20s var(--ease-google) infinite;
   animation-delay: -8s;
+  will-change: d;
 }
 
 @keyframes reveal-up {
@@ -285,16 +295,37 @@ body::before {
 
 .animate-aurora-1 {
   animation: aurora-drift-1 26s var(--ease-google) infinite;
+  will-change: transform;
 }
 
 .animate-aurora-2 {
   animation: aurora-drift-2 32s var(--ease-google) infinite;
   animation-delay: -8s;
+  will-change: transform;
 }
 
 .animate-aurora-3 {
   animation: aurora-drift-3 22s var(--ease-google) infinite;
   animation-delay: -14s;
+  will-change: transform;
+}
+
+/* Faint animated grid — a tiled line pattern whose wrapper drifts by exactly
+   one cell (56px) so the loop is seamless. transform-only (no
+   background-position animation, which would repaint every frame instead of
+   just compositing), matches the site's border/red tokens at low opacity. */
+@keyframes grid-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-56px, -56px, 0);
+  }
+}
+
+.animate-grid-drift {
+  animation: grid-drift 24s linear infinite;
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -308,7 +339,8 @@ body::before {
   .animate-scroll-bounce,
   .animate-aurora-1,
   .animate-aurora-2,
-  .animate-aurora-3 {
+  .animate-aurora-3,
+  .animate-grid-drift {
     animation: none;
   }
 }
