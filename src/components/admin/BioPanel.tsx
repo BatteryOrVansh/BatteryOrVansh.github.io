@@ -18,6 +18,12 @@ const TEXT_FIELDS: { key: string; label: string; multiline: boolean; placeholder
   { key: "education", label: "Education", multiline: true },
   { key: "experience", label: "Experience", multiline: true },
   { key: "certifications", label: "Certifications", multiline: true },
+  {
+    key: "technical_skills",
+    label: "Technical skills (shown as pills on the Hero page)",
+    multiline: true,
+    placeholder: "One per line, or comma-separated — e.g. React.js, Node.js, Python, C++",
+  },
   { key: "contact", label: "Contact", multiline: false, placeholder: "e.g. hello@example.com" },
   { key: "links", label: "Links", multiline: false, placeholder: "e.g. github.com/… · linkedin.com/…" },
 ];
