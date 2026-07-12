@@ -51,35 +51,45 @@ export default async function BioPage() {
             <span className="text-xs text-white opacity-80">_ &#9633; X</span>
           </div>
 
-          <div className="flex flex-col items-center gap-8 p-6 sm:flex-row sm:items-start">
-            <div className="h-40 w-40 shrink-0 overflow-hidden border-4 border-yellow-300 bg-[#1a1a24]">
-              {bio.photo_url ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={bio.photo_url}
-                  alt="Vansh Dixit"
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center font-mono text-xs text-[#555]">
-                  PHOTO.GIF
-                </div>
-              )}
-            </div>
+          <div className="p-6">
+            <table className="w-full border-collapse">
+              <tbody>
+                <tr>
+                  <td className="w-40 p-3 align-top">
+                    <div className="win95-bevel-in h-36 w-36 overflow-hidden p-1">
+                      {bio.photo_url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={bio.photo_url}
+                          alt="Vansh Dixit"
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-[#dcdcdc] text-xs text-[#555]">
+                          photo.gif
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                  <td className="p-3 align-top">
+                    <h1 className="text-3xl font-bold text-[#800000]">Vansh Dixit</h1>
+                    {bio.contact && (
+                      <p className="mt-1 text-sm text-[#000080] underline">{bio.contact}</p>
+                    )}
+                    <div className="mt-3">
+                      <VisitorCounter />
+                    </div>
+                    {bio.summary && (
+                      <p className="mt-4 max-w-xl text-sm leading-relaxed text-[#1a1a1a]">
+                        {bio.summary}
+                      </p>
+                    )}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
-            <div>
-              <h1 className="font-mono text-3xl font-bold text-yellow-300">Vansh Dixit</h1>
-              <p className="mt-1 font-mono text-sm text-cyan-300">{bio.contact}</p>
-              <VisitorCounter />
-              {bio.summary && (
-                <p className="mt-6 max-w-xl font-mono text-sm leading-relaxed text-[#c9c9d4]">
-                  {bio.summary}
-                </p>
-              )}
-            </div>
-          </div>
-
-          <hr className="my-8 border-dashed border-fuchsia-500" />
+            <hr className="my-6 border-t-2 border-dashed border-[#808080]" />
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
             <section>
