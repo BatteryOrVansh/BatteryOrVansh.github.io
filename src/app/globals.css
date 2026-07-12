@@ -149,6 +149,29 @@ body::before {
   animation: marquee-scroll var(--marquee-duration) linear infinite;
 }
 
+/* Windows-95-style beveled borders: sharp corners only, no rounding, no soft
+   drop shadows — the 3D effect comes purely from mismatched border colors
+   per side plus a matching inset box-shadow, like the classic button chrome. */
+.bio-90s .win95-bevel-out {
+  background-color: #c0c0c0;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ffffff #202020 #202020 #ffffff;
+  box-shadow:
+    inset 1px 1px 0 0 #dfdfdf,
+    inset -1px -1px 0 0 #808080;
+}
+
+.bio-90s .win95-bevel-in {
+  background-color: #c0c0c0;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #202020 #ffffff #ffffff #202020;
+  box-shadow:
+    inset 1px 1px 0 0 #808080,
+    inset -1px -1px 0 0 #dfdfdf;
+}
+
 @keyframes attention-pulse {
   0%,
   100% {
