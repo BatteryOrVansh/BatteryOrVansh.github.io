@@ -27,7 +27,7 @@ export function Reveal({
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
       variants={variants}
-      transition={{ duration: 0.7, delay, ease: [0.4, 0, 0.2, 1] }}
+      transition={{ type: "spring", stiffness: 60, damping: 16, mass: 0.8, delay }}
     >
       {children}
     </motion.div>
