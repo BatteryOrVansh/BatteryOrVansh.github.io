@@ -28,6 +28,13 @@ function VisitorCounter() {
 export default async function BioPage() {
   const bio = await getBioContent();
 
+  const sections: Array<{ heading: string; barColor: string; value?: string }> = [
+    { heading: "Education", barColor: "bg-[#800000]", value: bio.education },
+    { heading: "Extracurriculars", barColor: "bg-[#000080]", value: bio.experience },
+    { heading: "Certifications", barColor: "bg-[#4b0082]", value: bio.certifications },
+    { heading: "Links", barColor: "bg-[#556b2f]", value: bio.links },
+  ];
+
   return (
     <main className="bio-90s min-h-screen py-24">
       <div className="overflow-hidden border-y-4 border-double border-black bg-black py-2">
@@ -91,41 +98,28 @@ export default async function BioPage() {
 
             <hr className="my-6 border-t-2 border-dashed border-[#808080]" />
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-            <section>
-              <h2 className="inline-block bg-fuchsia-600 px-2 py-0.5 font-mono text-sm font-bold uppercase text-black">
-                Education
-              </h2>
-              <pre className="mt-3 whitespace-pre-wrap font-mono text-sm text-[#c9c9d4]">
-                {bio.education}
-              </pre>
-            </section>
-
-            <section>
-              <h2 className="inline-block bg-lime-400 px-2 py-0.5 font-mono text-sm font-bold uppercase text-black">
-                Experience
-              </h2>
-              <pre className="mt-3 whitespace-pre-wrap font-mono text-sm text-[#c9c9d4]">
-                {bio.experience}
-              </pre>
-            </section>
-
-            <section>
-              <h2 className="inline-block bg-cyan-400 px-2 py-0.5 font-mono text-sm font-bold uppercase text-black">
-                Certifications
-              </h2>
-              <pre className="mt-3 whitespace-pre-wrap font-mono text-sm text-[#c9c9d4]">
-                {bio.certifications}
-              </pre>
-            </section>
-
-            <section>
-              <h2 className="inline-block bg-yellow-300 px-2 py-0.5 font-mono text-sm font-bold uppercase text-black">
-                Links
-              </h2>
-              <p className="mt-3 font-mono text-sm text-[#c9c9d4]">{bio.links}</p>
-            </section>
-          </div>
+            <table className="w-full table-fixed border-collapse">
+              <tbody>
+                {[0, 1].map((row) => (
+                  <tr key={row}>
+                    {sections.slice(row * 2, row * 2 + 2).map((section) => (
+                      <td key={section.heading} className="p-2 align-top">
+                        <div className="win95-bevel-in h-full p-3">
+                          <h2
+                            className={`mb-2 inline-block px-2 py-0.5 text-sm font-bold uppercase text-white ${section.barColor}`}
+                          >
+                            {section.heading}
+                          </h2>
+                          <p className="whitespace-pre-wrap text-sm leading-relaxed text-[#1a1a1a]">
+                            {section.value}
+                          </p>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
