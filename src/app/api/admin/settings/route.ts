@@ -4,7 +4,7 @@ import { requireAdmin } from "@/lib/admin/verify-request";
 import { adminAuthErrorResponse, jsonError } from "@/lib/admin/api-helpers";
 import { getSupabaseAdmin } from "@/lib/supabase/server";
 
-const ALLOWED_SETTING_KEYS = ["hero_interests", "active_track_url"] as const;
+const ALLOWED_SETTING_KEYS = ["hero_interests"] as const;
 
 async function upsertSetting(request: NextRequest) {
   try {
