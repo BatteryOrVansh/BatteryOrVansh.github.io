@@ -15,12 +15,26 @@ async function getBioContent(): Promise<Record<string, string>> {
 }
 
 function VisitorCounter() {
-  // A tasteful wink at the 90s-web visitor counter, not literally broken UX.
+  // A tasteful wink at the 90s-web visitor counter, not real analytics —
+  // a static, seeded digit readout styled like an old LCD odometer.
   const seed = 108;
+  const digits = String(seed).padStart(6, "0").split("");
+
   return (
-    <div className="inline-flex items-center gap-2 border-2 border-lime-400 bg-black px-3 py-1 font-mono text-lime-400">
-      <span className="text-xs">VISITORS:</span>
-      <span className="tracking-widest">{String(seed).padStart(6, "0")}</span>
+    <div className="lcd-counter inline-flex items-center gap-2 px-2 py-1.5">
+      <div className="flex gap-0.5">
+        {digits.map((digit, i) => (
+          <span
+            key={i}
+            className="lcd-digit flex h-6 w-4 items-center justify-center text-sm font-bold"
+          >
+            {digit}
+          </span>
+        ))}
+      </div>
+      <span className="text-[10px] font-bold uppercase tracking-wide text-[#dfdfdf]">
+        hits since 1997
+      </span>
     </div>
   );
 }
@@ -28,91 +42,111 @@ function VisitorCounter() {
 export default async function BioPage() {
   const bio = await getBioContent();
 
+  const sections: Array<{ heading: string; barColor: string; value?: string }> = [
+    { heading: "Education", barColor: "bg-[#800000]", value: bio.education },
+    { heading: "Extracurriculars", barColor: "bg-[#000080]", value: bio.experience },
+    { heading: "Certifications", barColor: "bg-[#4b0082]", value: bio.certifications },
+    { heading: "Links", barColor: "bg-[#556b2f]", value: bio.links },
+  ];
+
   return (
-    <main className="bio-90s min-h-screen bg-[#0a0a12] py-24 text-[#e0e0e0]">
-      <div className="overflow-hidden border-y-4 border-dashed border-fuchsia-500 bg-black py-2">
-        <div className="animate-marquee flex w-max gap-16 whitespace-nowrap font-mono text-sm text-fuchsia-400">
+    <main className="bio-90s min-h-screen py-24">
+      <div className="overflow-hidden border-y-4 border-double border-black bg-black py-2">
+        <div className="animate-marquee flex w-max gap-16 whitespace-nowrap text-sm font-bold text-[#ffcc00]">
           {Array.from({ length: 2 }).map((_, i) => (
             <span key={i}>
               ★ WELCOME TO VANSH DIXIT&apos;S HOMEPAGE ★ BEST VIEWED AT ANY RESOLUTION ★ THANKS
-              FOR VISITING ★
+              FOR VISITING ★ SIGN THE GUESTBOOK ★
             </span>
           ))}
         </div>
       </div>
 
-      <Container className="mt-16">
-        <div className="border-4 border-cyan-400 bg-[#12121c] p-8 shadow-[8px_8px_0_0_#ff2b43]">
-          <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start">
-            <div className="h-40 w-40 shrink-0 overflow-hidden border-4 border-yellow-300 bg-[#1a1a24]">
-              {bio.photo_url ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={bio.photo_url}
-                  alt="Vansh Dixit"
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center font-mono text-xs text-[#555]">
-                  PHOTO.GIF
-                </div>
-              )}
-            </div>
-
-            <div>
-              <h1 className="font-mono text-3xl font-bold text-yellow-300">Vansh Dixit</h1>
-              <p className="mt-1 font-mono text-sm text-cyan-300">{bio.contact}</p>
-              <VisitorCounter />
-              {bio.summary && (
-                <p className="mt-6 max-w-xl font-mono text-sm leading-relaxed text-[#c9c9d4]">
-                  {bio.summary}
-                </p>
-              )}
-            </div>
+      <Container className="mt-10">
+        <div className="win95-bevel-out">
+          {/* Fake title bar, like the app window this whole page is cosplaying as */}
+          <div className="flex items-center justify-between bg-[#000080] px-2 py-1">
+            <span className="text-sm font-bold tracking-wide text-white">
+              vansh_dixit_homepage.htm
+            </span>
+            <span className="text-xs text-white opacity-80">_ &#9633; X</span>
           </div>
 
-          <hr className="my-8 border-dashed border-fuchsia-500" />
+          <div className="p-6">
+            <table className="w-full border-collapse">
+              <tbody>
+                <tr>
+                  <td className="w-40 p-3 align-top">
+                    <div className="win95-bevel-in h-36 w-36 overflow-hidden p-1">
+                      {bio.photo_url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={bio.photo_url}
+                          alt="Vansh Dixit"
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-[#dcdcdc] text-xs text-[#555]">
+                          photo.gif
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                  <td className="p-3 align-top">
+                    <h1 className="text-3xl font-bold text-[#800000]">Vansh Dixit</h1>
+                    {bio.contact && (
+                      <p className="mt-1 text-sm text-[#000080] underline">{bio.contact}</p>
+                    )}
+                    <div className="mt-3">
+                      <VisitorCounter />
+                    </div>
+                    {bio.summary && (
+                      <p className="mt-4 max-w-xl text-sm leading-relaxed text-[#1a1a1a]">
+                        {bio.summary}
+                      </p>
+                    )}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-            <section>
-              <h2 className="inline-block bg-fuchsia-600 px-2 py-0.5 font-mono text-sm font-bold uppercase text-black">
-                Education
-              </h2>
-              <pre className="mt-3 whitespace-pre-wrap font-mono text-sm text-[#c9c9d4]">
-                {bio.education}
-              </pre>
-            </section>
+            <hr className="my-6 border-t-2 border-dashed border-[#808080]" />
 
-            <section>
-              <h2 className="inline-block bg-lime-400 px-2 py-0.5 font-mono text-sm font-bold uppercase text-black">
-                Experience
-              </h2>
-              <pre className="mt-3 whitespace-pre-wrap font-mono text-sm text-[#c9c9d4]">
-                {bio.experience}
-              </pre>
-            </section>
-
-            <section>
-              <h2 className="inline-block bg-cyan-400 px-2 py-0.5 font-mono text-sm font-bold uppercase text-black">
-                Certifications
-              </h2>
-              <pre className="mt-3 whitespace-pre-wrap font-mono text-sm text-[#c9c9d4]">
-                {bio.certifications}
-              </pre>
-            </section>
-
-            <section>
-              <h2 className="inline-block bg-yellow-300 px-2 py-0.5 font-mono text-sm font-bold uppercase text-black">
-                Links
-              </h2>
-              <p className="mt-3 font-mono text-sm text-[#c9c9d4]">{bio.links}</p>
-            </section>
+            <table className="w-full table-fixed border-collapse">
+              <tbody>
+                {[0, 1].map((row) => (
+                  <tr key={row}>
+                    {sections.slice(row * 2, row * 2 + 2).map((section) => (
+                      <td key={section.heading} className="p-2 align-top">
+                        <div className="win95-bevel-in h-full p-3">
+                          <h2
+                            className={`mb-2 inline-block px-2 py-0.5 text-sm font-bold uppercase text-white ${section.barColor}`}
+                          >
+                            {section.heading}
+                          </h2>
+                          <p className="whitespace-pre-wrap text-sm leading-relaxed text-[#1a1a1a]">
+                            {section.value}
+                          </p>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <p className="mt-6 text-center font-mono text-xs text-[#555]">
-          made with notepad.exe &amp; ambition — est. this century
-        </p>
+        <div className="win95-bevel-out mt-6 flex flex-col items-center gap-2 p-4 text-center">
+          <div className="caution-stripes h-2 w-full max-w-xs" />
+          <p className="animate-construction-blink text-xs font-bold uppercase tracking-wide text-[#800000]">
+            &#9888; this page is always under construction &#9888;
+          </p>
+          <div className="caution-stripes h-2 w-full max-w-xs" />
+          <p className="mt-2 text-xs text-[#555]">
+            made with notepad.exe &amp; ambition — est. this century
+          </p>
+        </div>
       </Container>
     </main>
   );
