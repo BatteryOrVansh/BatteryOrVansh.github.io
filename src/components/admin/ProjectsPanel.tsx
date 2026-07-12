@@ -52,7 +52,7 @@ function parseGithubRepoUrl(input: string): { owner: string; repo: string } | nu
   const trimmed = input.trim();
   if (!trimmed) return null;
 
-  let rest = trimmed
+  const rest = trimmed
     .replace(/^https?:\/\//i, "")
     .replace(/^www\./i, "")
     .replace(/^github\.com\//i, "")
