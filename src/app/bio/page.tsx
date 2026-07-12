@@ -15,12 +15,26 @@ async function getBioContent(): Promise<Record<string, string>> {
 }
 
 function VisitorCounter() {
-  // A tasteful wink at the 90s-web visitor counter, not literally broken UX.
+  // A tasteful wink at the 90s-web visitor counter, not real analytics —
+  // a static, seeded digit readout styled like an old LCD odometer.
   const seed = 108;
+  const digits = String(seed).padStart(6, "0").split("");
+
   return (
-    <div className="inline-flex items-center gap-2 border-2 border-lime-400 bg-black px-3 py-1 font-mono text-lime-400">
-      <span className="text-xs">VISITORS:</span>
-      <span className="tracking-widest">{String(seed).padStart(6, "0")}</span>
+    <div className="lcd-counter inline-flex items-center gap-2 px-2 py-1.5">
+      <div className="flex gap-0.5">
+        {digits.map((digit, i) => (
+          <span
+            key={i}
+            className="lcd-digit flex h-6 w-4 items-center justify-center text-sm font-bold"
+          >
+            {digit}
+          </span>
+        ))}
+      </div>
+      <span className="text-[10px] font-bold uppercase tracking-wide text-[#dfdfdf]">
+        hits since 1997
+      </span>
     </div>
   );
 }
