@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/admin/verify-request";
 import { adminAuthErrorResponse, jsonError } from "@/lib/admin/api-helpers";
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { getSupabaseAdmin } from "@/lib/supabase/server";
 
 const ALLOWED_SETTING_KEYS = ["hero_interests", "active_track_url"] as const;
 
@@ -25,7 +25,7 @@ async function upsertSetting(request: NextRequest) {
     return jsonError("Value must be a string or null.", 400);
   }
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await getSupabaseAdmin()
     .from("site_settings")
     .upsert({ key: body.key, value: body.value }, { onConflict: "key" })
     .select()

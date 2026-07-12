@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/admin/verify-request";
 import { adminAuthErrorResponse, jsonError } from "@/lib/admin/api-helpers";
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { getSupabaseAdmin } from "@/lib/supabase/server";
 
 export type MusicTrack = {
   name: string;
@@ -17,6 +17,7 @@ export async function GET(request: NextRequest) {
     return adminAuthErrorResponse(error);
   }
 
+  const supabaseAdmin = getSupabaseAdmin();
   const { data, error } = await supabaseAdmin.storage.from("music").list("", {
     sortBy: { column: "created_at", order: "desc" },
   });
@@ -51,7 +52,7 @@ export async function DELETE(request: NextRequest) {
     return jsonError("A track name is required.", 400);
   }
 
-  const { error } = await supabaseAdmin.storage.from("music").remove([body.name]);
+  const { error } = await getSupabaseAdmin().storage.from("music").remove([body.name]);
   if (error) return jsonError(error.message, 500);
 
   return NextResponse.json({ success: true });

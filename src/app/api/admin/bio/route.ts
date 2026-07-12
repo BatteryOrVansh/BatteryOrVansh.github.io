@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/admin/verify-request";
 import { adminAuthErrorResponse, jsonError } from "@/lib/admin/api-helpers";
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { getSupabaseAdmin } from "@/lib/supabase/server";
 
 const ALLOWED_BIO_KEYS = [
   "photo_url",
@@ -33,7 +33,7 @@ async function upsertBio(request: NextRequest) {
     return jsonError("Value must be a string or null.", 400);
   }
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await getSupabaseAdmin()
     .from("bio_content")
     .upsert({ key: body.key, value: body.value }, { onConflict: "key" })
     .select()

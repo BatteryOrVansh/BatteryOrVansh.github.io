@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Nested Claude Code agent worktrees (each is a full checkout with its
+    // own .next/node_modules) live under the repo root — never lint them.
+    "**/.claude/**",
   ]),
 ]);
 

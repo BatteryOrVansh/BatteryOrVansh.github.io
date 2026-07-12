@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/admin/verify-request";
 import { adminAuthErrorResponse, jsonError } from "@/lib/admin/api-helpers";
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { getSupabaseAdmin } from "@/lib/supabase/server";
 
 type ProjectPatchInput = {
   title?: unknown;
@@ -84,7 +84,7 @@ export async function PATCH(request: NextRequest, context: { params: Promise<{ i
     return jsonError("No fields to update.", 400);
   }
 
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await getSupabaseAdmin()
     .from("projects")
     .update(result.value)
     .eq("id", id)
@@ -105,7 +105,7 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
 
   const { id } = await context.params;
 
-  const { error } = await supabaseAdmin.from("projects").delete().eq("id", id);
+  const { error } = await getSupabaseAdmin().from("projects").delete().eq("id", id);
   if (error) return jsonError(error.message, 500);
 
   return NextResponse.json({ success: true });

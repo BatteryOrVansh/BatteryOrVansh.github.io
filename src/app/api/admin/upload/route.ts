@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/admin/verify-request";
 import { adminAuthErrorResponse, jsonError } from "@/lib/admin/api-helpers";
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { getSupabaseAdmin } from "@/lib/supabase/server";
 
 const ALLOWED_BUCKETS = ["photos", "music"] as const;
 type AllowedBucket = (typeof ALLOWED_BUCKETS)[number];
@@ -44,6 +44,7 @@ export async function POST(request: NextRequest) {
 
   const path = `${crypto.randomUUID()}-${sanitizeFileName(file.name)}`;
   const arrayBuffer = await file.arrayBuffer();
+  const supabaseAdmin = getSupabaseAdmin();
 
   const { error: uploadError } = await supabaseAdmin.storage
     .from(bucket)

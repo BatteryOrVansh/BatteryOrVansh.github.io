@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { onAuthStateChanged, signInWithPopup, signOut, type User } from "firebase/auth";
-import { firebaseAuth, googleProvider } from "@/lib/firebase/client";
+import { getFirebaseAuth, getGoogleProvider } from "@/lib/firebase/client";
 import { adminFetch } from "@/lib/admin/client";
 import { Container } from "@/components/ui/Container";
 import { ProjectsPanel } from "@/components/admin/ProjectsPanel";
@@ -23,7 +23,7 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<Tab>("Projects");
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(firebaseAuth, async (nextUser) => {
+    const unsubscribe = onAuthStateChanged(getFirebaseAuth(), async (nextUser) => {
       setUser(nextUser);
 
       if (!nextUser) {
@@ -49,14 +49,14 @@ export default function AdminPage() {
   const handleSignIn = useCallback(async () => {
     setSignInError(null);
     try {
-      await signInWithPopup(firebaseAuth, googleProvider);
+      await signInWithPopup(getFirebaseAuth(), getGoogleProvider());
     } catch {
       setSignInError("Sign-in failed. Please try again.");
     }
   }, []);
 
   const handleSignOut = useCallback(() => {
-    signOut(firebaseAuth);
+    signOut(getFirebaseAuth());
   }, []);
 
   if (status === "loading" || status === "checking") {
