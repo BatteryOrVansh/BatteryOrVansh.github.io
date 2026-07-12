@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactElement, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactElement, type ReactNode } from "react";
 
 const Cell1 = ({ colors }: { colors: string[]; strokeWidth: number }) => (
   <circle cx="50" cy="50" r="9.44" fill={colors[0]} fillRule="evenodd" />
@@ -93,6 +93,7 @@ interface ShapeProps {
   scale: number;
   minInterval?: number;
   maxInterval?: number;
+  paused?: boolean;
 }
 
 const Shape = ({
@@ -103,6 +104,7 @@ const Shape = ({
   scale,
   minInterval = 0,
   maxInterval = 5000,
+  paused = false,
 }: ShapeProps) => {
   // Starts empty (Cell6) on every render, server or client, so hydration never
   // has to reconcile a Math.random()-picked shape that differs between the
@@ -112,6 +114,11 @@ const Shape = ({
   );
 
   useEffect(() => {
+    // Skip scheduling entirely while off-screen — with a few hundred of
+    // these mounted at once, idle timers for cells outside the viewport
+    // were the main source of scroll jank.
+    if (paused) return;
+
     const getRandomInterval = () => Math.random() * (maxInterval - minInterval) + minInterval;
 
     const updateShape = () => {
@@ -134,7 +141,7 @@ const Shape = ({
     }, getRandomInterval());
 
     return () => clearTimeout(timeoutId);
-  }, [minInterval, maxInterval]);
+  }, [minInterval, maxInterval, paused]);
 
   const ShapeComponent = currentShape.shape;
 
@@ -161,7 +168,7 @@ interface BackgroundShapesProps {
 export const BackgroundShapes = ({
   width = 500,
   height = 500,
-  cellSize = 20,
+  cellSize = 48,
   strokeWidth = 10,
   colors = ["currentColor"],
   className = "",
@@ -171,6 +178,20 @@ export const BackgroundShapes = ({
   const borderSize = cellSize * 2;
   const scale = 0.2;
   const colorsKey = colors.join("|");
+
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = svgRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), {
+      rootMargin: "200px",
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const shapes = useMemo<ReactNode[]>(() => {
     const list: ReactNode[] = [];
@@ -186,6 +207,7 @@ export const BackgroundShapes = ({
             scale={scale}
             minInterval={minInterval}
             maxInterval={maxInterval}
+            paused={!isVisible}
           />,
           <Shape
             key={`right-${x}-${y}`}
@@ -196,6 +218,7 @@ export const BackgroundShapes = ({
             scale={scale}
             minInterval={minInterval}
             maxInterval={maxInterval}
+            paused={!isVisible}
           />,
         );
       }
@@ -203,10 +226,16 @@ export const BackgroundShapes = ({
     return list;
     // colors identity may change per-render; use a stable join key instead.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width, height, cellSize, strokeWidth, colorsKey, borderSize, minInterval, maxInterval]);
+  }, [width, height, cellSize, strokeWidth, colorsKey, borderSize, minInterval, maxInterval, isVisible]);
 
   return (
-    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className={className}>
+    <svg
+      ref={svgRef}
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      className={className}
+    >
       {shapes}
     </svg>
   );
