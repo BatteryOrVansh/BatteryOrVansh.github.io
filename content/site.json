@@ -143,11 +143,11 @@
           ]
         },
         {
-          "id": "adops-toolkit",
-          "name": "AdOps Toolkit",
+          "id": "adpulse-academy",
+          "name": "AdPulse Academy",
           "year": "TODO(Vansh): year",
-          "tagline": "TODO(Vansh): one line on what AdOps Toolkit does.",
-          "summary": "TODO(Vansh): two or three sentences: the problem, what you built, what you learned.",
+          "tagline": "A free learning platform for business, data and ad analysts.",
+          "summary": "A separate, free platform with labs, quizzes and certificates for people learning business, data and ad analysis. TODO(Vansh): one or two sentences on what you built and what you learned.",
           "role": "TODO(Vansh): your role.",
           "stack": ["TODO(Vansh): stack"],
           "links": [

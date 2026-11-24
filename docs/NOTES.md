@@ -42,3 +42,12 @@ old-site-v1` (HTTP 403); branch pushes work. The tag exists locally at
   one variable.
 - **Design lab copy is not in site.json.** It is a developer page (`/lab.html`,
   noindex, unlinked), so its labels aren't site copy.
+
+## Changes requested by Vansh
+
+- **Project 2 is AdPulse Academy**, not AdOps Toolkit: a separate free learning
+  platform for business, data and ad analysts with labs, quizzes and certificates.
+- **No `old-site-v1` tag.** Vansh creates an `old-site` branch on GitHub himself.
+  DEPLOY.md's restore steps must use that branch, not a tag.
+- **Command hygiene:** dev servers and previews run in the background, and every
+  command gets a timeout.

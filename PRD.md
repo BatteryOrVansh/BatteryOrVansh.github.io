@@ -19,7 +19,7 @@ low power, full charge.
 | --- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 00  | `boot`    | Short charging intro, skippable, that doubles as the sound gate (**Enter with sound** / **Enter silent**). Then the name and a one-line description. |
 | 01  | `about`   | Who I am, what I am learning (data analysis, machine learning), what I am joining.                                                                   |
-| 02  | `work`    | Four project panels (FocusBoard, AdOps Toolkit, AdPulse, this site). Each expands into a detail view with a FLIP animation.                          |
+| 02  | `work`    | Four project panels (FocusBoard, AdPulse Academy, AdPulse, this site). Each expands into a detail view with a FLIP animation.                        |
 | 03  | `toolkit` | Skills grouped honestly by how well I know them.                                                                                                     |
 | 04  | `now`     | Now and Next: what I am building and studying, and the January 2027 internship.                                                                      |
 | 05  | `contact` | Email, GitHub, LinkedIn, resume link.                                                                                                                |

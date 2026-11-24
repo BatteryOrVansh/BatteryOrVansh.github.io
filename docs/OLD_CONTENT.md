@@ -48,7 +48,7 @@ not in the repo, so most of what is below comes from the older Vite version.
 
 ## Not found anywhere in the old site
 
-- FocusBoard, AdOps Toolkit, AdPulse (the three projects the redesign features).
+- FocusBoard, AdPulse Academy, AdPulse (the three projects the redesign features).
 - InMobi Group (new; from the redesign brief).
 - Resume link, photo.
 

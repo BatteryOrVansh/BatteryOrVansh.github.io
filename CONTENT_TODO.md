@@ -19,8 +19,7 @@ left, then regenerate this list (see the bottom of this file).
 - [ ] `slides.work.projects[0].stack[0]` — stack
 - [ ] `slides.work.projects[0].links[0].href` — repo or demo URL
 - [ ] `slides.work.projects[1].year` — year
-- [ ] `slides.work.projects[1].tagline` — one line on what AdOps Toolkit does.
-- [ ] `slides.work.projects[1].summary` — two or three sentences: the problem, what you built, what you learned.
+- [ ] `slides.work.projects[1].summary` — A separate, free platform with labs, quizzes and certificates for people learning business, data and ad analysis. TODO(Vansh): one or two sentences on what you built and what you learned.
 - [ ] `slides.work.projects[1].role` — your role.
 - [ ] `slides.work.projects[1].stack[0]` — stack
 - [ ] `slides.work.projects[1].links[0].href` — repo or demo URL
@@ -37,7 +36,7 @@ left, then regenerate this list (see the bottom of this file).
 
 ## Outside site.json
 
-- [ ] Push the `old-site-v1` tag (the build sandbox could not):
+- [ ] Create the `old-site` branch on GitHub from the old main (commit f3ce870) as a backup.
       `git tag old-site-v1 f3ce870 && git push origin old-site-v1`
 - [ ] Decide whether the hackathon "field log" on the About cell stays (it is
       from the old site; keep only what you can talk about).
