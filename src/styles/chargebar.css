@@ -1,0 +1,187 @@
+/* Top chrome: handle, the charge bar (one segment per cell), the readout,
+   and a slot for the music toggle. --level is a continuous number of filled
+   cells (1..6); each segment fills by clamp(0, level - i, 1). */
+
+.chrome {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-chrome);
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: clamp(0.6rem, 1.5vw, 1.5rem);
+  height: calc(var(--bar-h) + env(safe-area-inset-top));
+  padding: env(safe-area-inset-top) var(--gutter) 0;
+  pointer-events: none;
+}
+
+.chrome > * {
+  pointer-events: auto;
+}
+
+.chrome__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.chrome__brand b {
+  font-weight: 400;
+  color: var(--amber);
+}
+
+.charge {
+  --level: 1;
+  --count: 6;
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.charge__cells {
+  display: grid;
+  grid-template-columns: repeat(var(--count), 1fr);
+  gap: 4px;
+  width: 100%;
+  padding: 4px;
+  border: 1px solid var(--glass-border);
+  border-radius: 7px;
+  background: rgb(var(--ink-rgb) / 0.35);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+/* battery terminal */
+.charge::after {
+  content: '';
+  flex: none;
+  width: 4px;
+  height: 10px;
+  margin-left: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--glass-border);
+  transition: background var(--dur-mid) var(--ease-out);
+}
+
+.charge__cell {
+  --f: clamp(0, calc(var(--level) - var(--i)), 1);
+  position: relative;
+  display: block;
+  height: 10px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: rgb(var(--bone-rgb) / 0.07);
+  color: var(--text-faint);
+  text-decoration: none;
+  outline-offset: 6px;
+}
+
+/* the hit area is bigger than the visible cell */
+.charge__cell::before {
+  content: '';
+  position: absolute;
+  inset: -17px -2px;
+}
+
+.charge__fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--amber);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--f));
+  box-shadow: 0 0 12px rgb(var(--amber-rgb) / 0.6);
+}
+
+/* low power: only the first cell lit, and it's ember */
+.charge[data-level='low'] .charge__fill {
+  background: var(--ember);
+  box-shadow: 0 0 12px rgb(var(--ember-rgb) / 0.7);
+  animation: low-blink 2.4s var(--ease-in-out) infinite;
+}
+
+/* full charge: terminal lights up */
+.charge[data-level='full']::after {
+  background: var(--amber);
+}
+
+.charge[data-level='full'] .charge__cells {
+  border-color: rgb(var(--amber-rgb) / 0.5);
+  box-shadow: 0 0 24px -6px rgb(var(--amber-rgb) / 0.55);
+}
+
+.charge__cell[aria-current='step'] .charge__fill {
+  animation: cell-breathe 2.8s var(--ease-in-out) infinite;
+}
+
+.charge__label {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 9px);
+  white-space: nowrap;
+  opacity: 0;
+  translate: 0 -3px;
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    translate var(--dur-fast) var(--ease-out);
+  pointer-events: none;
+}
+
+.charge__cell:hover .charge__label,
+.charge__cell:focus-visible .charge__label {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* labels live outside the overflow-hidden cell via a wrapper */
+.charge__item {
+  position: relative;
+}
+
+.charge__readout {
+  min-width: 4.5ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+}
+
+.charge__readout[data-level='low'] {
+  color: var(--ember);
+}
+
+.charge__readout[data-level='full'] {
+  color: var(--amber);
+}
+
+@keyframes cell-breathe {
+  50% {
+    opacity: 0.72;
+  }
+}
+
+@keyframes low-blink {
+  0%,
+  60%,
+  100% {
+    opacity: 1;
+  }
+  70%,
+  90% {
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 520px) {
+  .chrome__brand span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .charge__fill {
+    animation: none !important;
+  }
+}
