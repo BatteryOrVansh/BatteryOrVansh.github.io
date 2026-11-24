@@ -19,7 +19,9 @@ Phase 2: Deck engine (starting).
 
 ## Done
 
-- Old site tagged locally as `old-site-v1`; branch `redesign` created.
+- Branch `redesign` created; old-site backup is Vansh's job (branch `old-site`).
+- Work project 2 is AdPulse Academy (replaced AdOps Toolkit).
+- Build-time renderer (site.json -> cells/charge bar) and deck track CSS.
 - CLAUDE.md, PRD.md, PROGRESS.md, AGENTS.md, GEMINI.md, docs/NOTES.md.
 - docs/OLD_CONTENT.md (content notes + secrets scan: none found).
 - Old Next.js site removed on this branch.
@@ -56,6 +58,5 @@ Design lab: `npm run dev` then open http://localhost:5173/lab.html
 
 ## Known issues
 
-- Tag `old-site-v1` exists only locally in the build sandbox. Push it with
-  `git tag old-site-v1 f3ce870 && git push origin old-site-v1`.
+- Vansh will create an `old-site` branch on GitHub himself; do not retry the tag push.
 - The page is an empty shell until Phase 2/3.
