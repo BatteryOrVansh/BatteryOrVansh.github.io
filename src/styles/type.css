@@ -1,0 +1,125 @@
+/* Typographic roles. Fraunces = voice, Hanken = reading, Martian Mono = instruments. */
+
+.display {
+  font-family: var(--font-display);
+  font-variation-settings: var(--fraunces-soft);
+  font-weight: 340;
+  font-size: var(--step-hero);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+}
+
+.display em,
+.heading em {
+  font-style: italic;
+  font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;
+  color: var(--amber);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-variation-settings: var(--fraunces-soft);
+  font-weight: 380;
+  font-size: var(--step-5);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.subheading {
+  font-family: var(--font-display);
+  font-variation-settings: var(--fraunces-text);
+  font-weight: 500;
+  font-size: var(--step-2);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+/* the oversized cell numbers that sit behind each slide */
+.numeral {
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;
+  font-weight: 200;
+  font-size: var(--step-numeral);
+  line-height: 0.72;
+  letter-spacing: -0.07em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(var(--bone-rgb) / 0.16);
+  user-select: none;
+  pointer-events: none;
+}
+
+.lede {
+  font-size: var(--step-1);
+  line-height: 1.4;
+  color: var(--text);
+  max-width: 34ch;
+}
+
+.body-copy {
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--text-dim);
+  max-width: 58ch;
+}
+
+.body-copy + .body-copy {
+  margin-top: 0.9em;
+}
+
+/* mono instruments: labels, captions, readouts */
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mono--dim {
+  color: var(--text-faint);
+}
+
+.mono--amber {
+  color: var(--amber);
+}
+
+.mono--ember {
+  color: var(--ember);
+}
+
+/* numbered caption: "fig. 02 — something" with a short rule */
+.caption {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.75em;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.caption::before {
+  content: '';
+  width: 2.25em;
+  height: 1px;
+  align-self: center;
+  background: currentColor;
+}
+
+/* TODO(Vansh) placeholders render as a visible pending mark */
+.todo {
+  display: inline;
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--ember);
+  background: rgb(var(--ember-rgb) / 0.08);
+  border: 1px dashed rgb(var(--ember-rgb) / 0.5);
+  border-radius: 4px;
+  padding: 0.05em 0.4em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
