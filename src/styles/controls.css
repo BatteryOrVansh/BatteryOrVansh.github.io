@@ -127,3 +127,7 @@
 .scribble--bone {
   stroke: rgb(var(--bone-rgb) / 0.7);
 }
+
+.scribble path {
+  vector-effect: non-scaling-stroke;
+}
