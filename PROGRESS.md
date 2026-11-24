@@ -4,11 +4,11 @@ Resume from this file alone. Spec: `PRD.md`. Rules: `CLAUDE.md`. Decisions: `doc
 
 ## Current phase
 
-Phase 0: Scaffold (in progress).
+Phase 1: Design system (starting).
 
 ## Phase checklist
 
-- [ ] 0 Scaffold
+- [x] 0 Scaffold
 - [ ] 1 Design system
 - [ ] 2 Deck engine
 - [ ] 3 Slide layouts and content
@@ -19,17 +19,23 @@ Phase 0: Scaffold (in progress).
 
 ## Done
 
-- Tagged the old site locally as `old-site-v1` (push blocked by sandbox proxy; Vansh pushes it).
-- Created branch `redesign`.
-- CLAUDE.md, PRD.md.
+- Old site tagged locally as `old-site-v1`; branch `redesign` created.
+- CLAUDE.md, PRD.md, PROGRESS.md, AGENTS.md, GEMINI.md, docs/NOTES.md.
+- docs/OLD_CONTENT.md (content notes + secrets scan: none found).
+- Old Next.js site removed on this branch.
+- Vite 6 + TypeScript strict, ESLint 9 + Prettier, copy linter for banned words.
+- content/site.json with typed schema (`src/content/types.ts`), TODO lister.
+- CONTENT_TODO.md.
+- CI (`ci.yml`: lint, format, build, JS budget, Lighthouse), Pages deploy
+  (`deploy.yml`, main only), vercel.json, netlify.toml.
 
 ## Next 5 actions
 
-1. AGENTS.md and GEMINI.md pointers.
-2. docs/OLD_CONTENT.md from the old site.
-3. Remove old Next.js site files on this branch.
-4. Vite + TypeScript scaffold, lint and format.
-5. CI workflow, content/site.json skeleton, CONTENT_TODO.md.
+1. Copy Fraunces / Hanken Grotesk / Martian Mono woff2 into public/fonts, @font-face.
+2. tokens.css (palette, spacing, type scale, easing) and base.css.
+3. Glass component, drifting orbs, film grain.
+4. Hidden design lab page (lab.html) showing every component.
+5. Charge-bar and button styles in the lab.
 
 ## Open decisions
 
@@ -37,9 +43,15 @@ Phase 0: Scaffold (in progress).
 
 ## How to run and test
 
-Not runnable yet (scaffold pending).
+```bash
+npm install
+npm run dev            # http://localhost:5173
+npm run build && npm run check:budget
+npm run lint
+```
 
 ## Known issues
 
 - Tag `old-site-v1` exists only locally in the build sandbox. Push it with
   `git tag old-site-v1 f3ce870 && git push origin old-site-v1`.
+- The page is an empty shell until Phase 2/3.
