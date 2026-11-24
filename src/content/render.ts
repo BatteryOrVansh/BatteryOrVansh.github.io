@@ -67,7 +67,9 @@ function renderCell(site: Site, id: SlideId, index: number, inner: string): stri
     aria-roledescription="cell"
     aria-label="${esc(label)}"
   >
-    <span class="numeral cell__numeral" aria-hidden="true">${s.num}</span>
+    <div class="cell__bg" aria-hidden="true">
+      <span class="numeral cell__numeral">${s.num}</span>
+    </div>
     <div class="cell__inner">${inner}</div>
   </section>`;
 }
