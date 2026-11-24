@@ -85,8 +85,7 @@ python3 scripts/make_demo_tracks.py   # regenerate the demo music
 - Never invent experience, employers, numbers or skills. Vansh must be able to
   defend every claim in an interview. Unknowns are written as `TODO(Vansh): ...`
   in site.json and listed in `CONTENT_TODO.md`.
-- InMobi Group (Analyst intern, business analysis and ad operations, January
-  2027) is shown as **Joining**, never as past experience.
+- InMobi Group (Analyst intern, business analysis and ad operations, January 2027) is shown as **Joining**, never as past experience.
 - Short, specific, first-person copy with some personality.
 - Banned words: passionate, leverage, seamless, elevate, cutting-edge, crafting,
   journey, tapestry. (`npm run lint:copy` checks site.json.)

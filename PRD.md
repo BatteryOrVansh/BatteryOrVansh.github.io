@@ -15,14 +15,14 @@ low power, full charge.
 
 ## 3. Slides
 
-| # | Id | Content |
-|---|----|---------|
-| 00 | `boot` | Short charging intro, skippable, that doubles as the sound gate (**Enter with sound** / **Enter silent**). Then the name and a one-line description. |
-| 01 | `about` | Who I am, what I am learning (data analysis, machine learning), what I am joining. |
-| 02 | `work` | Four project panels (FocusBoard, AdOps Toolkit, AdPulse, this site). Each expands into a detail view with a FLIP animation. |
-| 03 | `toolkit` | Skills grouped honestly by how well I know them. |
-| 04 | `now` | Now and Next: what I am building and studying, and the January 2027 internship. |
-| 05 | `contact` | Email, GitHub, LinkedIn, resume link. |
+| #   | Id        | Content                                                                                                                                              |
+| --- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 00  | `boot`    | Short charging intro, skippable, that doubles as the sound gate (**Enter with sound** / **Enter silent**). Then the name and a one-line description. |
+| 01  | `about`   | Who I am, what I am learning (data analysis, machine learning), what I am joining.                                                                   |
+| 02  | `work`    | Four project panels (FocusBoard, AdOps Toolkit, AdPulse, this site). Each expands into a detail view with a FLIP animation.                          |
+| 03  | `toolkit` | Skills grouped honestly by how well I know them.                                                                                                     |
+| 04  | `now`     | Now and Next: what I am building and studying, and the January 2027 internship.                                                                      |
+| 05  | `contact` | Email, GitHub, LinkedIn, resume link.                                                                                                                |
 
 ## 4. Content rules
 
@@ -40,14 +40,14 @@ low power, full charge.
 
 ### Palette (CSS variables; no green anywhere; success states use amber)
 
-| Token | Hex | Role |
-|---|---|---|
-| ink | `#110C0E` | background |
-| oxblood | `#3B1219` | depth, orbs |
-| dusk | `#2B3A67` | cool counterweight, orbs |
-| bone | `#F2EAD8` | text, glass tint |
-| amber | `#FFB238` | charge, focus, success |
-| ember | `#FF5A3C` | low power, warnings |
+| Token   | Hex       | Role                     |
+| ------- | --------- | ------------------------ |
+| ink     | `#110C0E` | background               |
+| oxblood | `#3B1219` | depth, orbs              |
+| dusk    | `#2B3A67` | cool counterweight, orbs |
+| bone    | `#F2EAD8` | text, glass tint         |
+| amber   | `#FFB238` | charge, focus, success   |
+| ember   | `#FF5A3C` | low power, warnings      |
 
 ### Glass
 
@@ -94,6 +94,7 @@ list, and the license credit. Clicking outside or the close button collapses
 it. Keyboard and screen-reader accessible; reduced-motion fallback.
 
 **Behaviour.**
+
 - The Boot slide's **Enter with sound** is the user gesture that starts audio;
   **Enter silent** keeps it off.
 - Later visits remember the choice, last song, volume and mute state

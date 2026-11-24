@@ -18,14 +18,14 @@ not in the repo, so most of what is below comes from the older Vite version.
 
 ## Hackathons (old site, as written there)
 
-| Event | When | Where | Note |
-|---|---|---|---|
-| Hack-A-Run | Nov 2023 | BBD University, Lucknow | 1st position. Student session site: Pomodoro, live music, notes, to-do, focus sessions. |
-| Smart India Hackathon | 2024 | National | Multilingual chatbot ticketing for museums (proposal). |
-| TechKriti with NFRA | Mar 2025 | IIT Kanpur | PRAMAAN: LLM financial statement simplifier. Role: data cleaning and visualisation. |
-| Bhartiya Antariksh Hackathon | Jul 2025 | ISRO | Vaayu Darshak: hyperlocal air-quality monitoring/forecasting. |
-| Smart India Hackathon | 2025 | National | MANOBAL: mental-health support for college students. Role: GAD-7 research. |
-| Vaultheist ISTE Hackathon | Oct 2025 | CGC University, Mohali | Glide UpSkill: AI career-learning platform. Role: frontend, control flow, product strategy. |
+| Event                        | When     | Where                   | Note                                                                                        |
+| ---------------------------- | -------- | ----------------------- | ------------------------------------------------------------------------------------------- |
+| Hack-A-Run                   | Nov 2023 | BBD University, Lucknow | 1st position. Student session site: Pomodoro, live music, notes, to-do, focus sessions.     |
+| Smart India Hackathon        | 2024     | National                | Multilingual chatbot ticketing for museums (proposal).                                      |
+| TechKriti with NFRA          | Mar 2025 | IIT Kanpur              | PRAMAAN: LLM financial statement simplifier. Role: data cleaning and visualisation.         |
+| Bhartiya Antariksh Hackathon | Jul 2025 | ISRO                    | Vaayu Darshak: hyperlocal air-quality monitoring/forecasting.                               |
+| Smart India Hackathon        | 2025     | National                | MANOBAL: mental-health support for college students. Role: GAD-7 research.                  |
+| Vaultheist ISTE Hackathon    | Oct 2025 | CGC University, Mohali  | Glide UpSkill: AI career-learning platform. Role: frontend, control flow, product strategy. |
 
 ## Skills listed on the old site
 
