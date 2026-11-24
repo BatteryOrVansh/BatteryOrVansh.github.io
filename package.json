@@ -15,7 +15,8 @@
     "format:check": "prettier --check .",
     "todos": "node scripts/list-todos.mjs",
     "check:budget": "node scripts/check-budget.mjs",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "e2e": "npm run build && (timeout 120 vite preview --port 4173 >/dev/null 2>&1 & sleep 3; node scripts/e2e/deck.cjs; node scripts/e2e/mobile.cjs; pkill -f 'vite preview')"
   },
   "engines": {
     "node": ">=20"
