@@ -1,0 +1,65 @@
+.lab {
+  overflow-x: hidden;
+}
+
+.lab-wrap {
+  position: relative;
+  z-index: var(--z-deck);
+  padding: calc(var(--bar-h) + var(--space-xl)) var(--gutter) var(--space-2xl);
+  display: grid;
+  gap: var(--space-2xl);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.lab-section {
+  display: grid;
+  gap: var(--space-m);
+}
+
+.lab-section > header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-s);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: var(--space-2xs);
+}
+
+.lab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  align-items: center;
+}
+
+.lab-swatch {
+  width: 9rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.lab-swatch i {
+  display: block;
+  height: 5.5rem;
+  border-radius: var(--radius-m);
+  border: 1px solid var(--glass-border);
+  background: var(--c);
+}
+
+.lab-card {
+  padding: var(--space-m);
+  width: min(100%, 22rem);
+  min-height: 12rem;
+  display: grid;
+  align-content: space-between;
+  gap: var(--space-s);
+}
+
+.lab-scribbles svg {
+  width: 9rem;
+  height: auto;
+}
+
+.lab-type > * + * {
+  margin-top: var(--space-s);
+}
