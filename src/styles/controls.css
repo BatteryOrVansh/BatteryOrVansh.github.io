@@ -1,0 +1,129 @@
+/* Buttons and links. Every target is at least 44px tall. */
+
+.btn {
+  --bg: var(--glass-tint);
+  --fg: var(--text);
+  --bd: var(--glass-border);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  min-height: 3.25rem;
+  min-width: var(--tap);
+  padding: 0 1.5rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--bd);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: inset 0 1px 0 0 var(--glass-highlight);
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:hover {
+  --bg: var(--glass-tint-strong);
+  --bd: rgb(var(--bone-rgb) / 0.32);
+}
+
+.btn:active {
+  translate: 0 1px;
+}
+
+/* the charged action: amber cell with a little nub, like a battery terminal */
+.btn--charge {
+  --bg: var(--amber);
+  --fg: var(--ink);
+  --bd: var(--amber);
+  box-shadow:
+    0 0 0 0 rgb(var(--amber-rgb) / 0),
+    0 18px 40px -18px rgb(var(--amber-rgb) / 0.75);
+}
+
+.btn--charge:hover {
+  --bg: #ffc061;
+  --bd: #ffc061;
+}
+
+.btn--charge::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  width: 5px;
+  height: 14px;
+  translate: 0 -50%;
+  border-radius: 0 3px 3px 0;
+  background: inherit;
+  background-color: var(--bg);
+}
+
+.btn--ghost {
+  --bg: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.btn--ghost:hover {
+  --bg: rgb(var(--bone-rgb) / 0.06);
+}
+
+.btn--icon {
+  padding: 0;
+  width: var(--tap);
+  min-height: var(--tap);
+}
+
+.btn__magnet {
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+  pointer-events: none;
+}
+
+/* inline text link with an amber underline that charges on hover */
+.link {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(var(--amber), var(--amber));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 -1px 0 rgb(var(--bone-rgb) / 0.3);
+  transition: background-size var(--dur-mid) var(--ease-out);
+}
+
+.link:hover,
+.link:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* hand-drawn scribbles */
+.scribble {
+  fill: none;
+  stroke: var(--amber);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
+}
+
+.scribble--ember {
+  stroke: var(--ember);
+}
+
+.scribble--bone {
+  stroke: rgb(var(--bone-rgb) / 0.7);
+}
