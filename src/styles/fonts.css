@@ -1,0 +1,65 @@
+/* Self-hosted fonts (OFL-1.1, see public/fonts/LICENSE-*.txt).
+   Latin subsets only. Fraunces is the full variable file: opsz, wght, SOFT, WONK. */
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-var.woff2') format('woff2-variations'),
+    url('/fonts/fraunces-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-var-italic.woff2') format('woff2-variations'),
+    url('/fonts/fraunces-var-italic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hanken Grotesk';
+  src: url('/fonts/hanken-grotesk-var.woff2') format('woff2-variations'),
+    url('/fonts/hanken-grotesk-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Martian Mono';
+  src: url('/fonts/martian-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Metric-matched fallbacks so the swap doesn't shove text around. */
+@font-face {
+  font-family: 'Fraunces Fallback';
+  src: local('Georgia'), local('Times New Roman');
+  size-adjust: 105%;
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Hanken Fallback';
+  src: local('Arial'), local('Helvetica');
+  size-adjust: 96%;
+  ascent-override: 100%;
+  descent-override: 29%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Martian Fallback';
+  src: local('Courier New'), local('Courier');
+  size-adjust: 112%;
+  ascent-override: 88%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
