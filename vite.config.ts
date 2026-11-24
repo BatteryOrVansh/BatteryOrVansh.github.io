@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
+import { renderPlugin } from './build/render-plugin';
 
 export default defineConfig({
   base: '/',
+  plugins: [renderPlugin()],
   build: {
     target: 'es2020',
     cssCodeSplit: true,
