@@ -4,13 +4,13 @@ Resume from this file alone. Spec: `PRD.md`. Rules: `CLAUDE.md`. Decisions: `doc
 
 ## Current phase
 
-Phase 2: Deck engine (starting).
+Phase 3: Slide layouts and content (starting).
 
 ## Phase checklist
 
 - [x] 0 Scaffold
 - [x] 1 Design system
-- [ ] 2 Deck engine
+- [x] 2 Deck engine
 - [ ] 3 Slide layouts and content
 - [ ] 4 Motion pass + music player
 - [ ] 5 Responsive and accessibility pass
@@ -33,13 +33,17 @@ Phase 2: Deck engine (starting).
 - Phase 1: self-hosted fonts, tokens, type roles, glass, orbs + grain, buttons,
   scribbles, charge-bar styles, hidden design lab at `/lab.html`.
 
+- Phase 2: deck engine (`src/deck/`): inert cells, GSAP track, charge-level tween,
+  hash routing + back button, keys/wheel/swipe/click, focus handoff, live region.
+  Verified with Playwright (`npm run e2e`), normal and reduced motion.
+
 ## Next 5 actions
 
-1. Build-time render plugin: site.json -> cell markup in index.html.
-2. Deck engine: horizontal track, goTo(index), cell `inert` handling.
-3. Charge bar wired to the deck (--level tween, click to jump).
-4. Hash routing (#work), keyboard, wheel, swipe.
-5. Focus management + live-region announcements.
+1. Boot cell: charging intro markup, Enter with sound / silent, name + one-liner.
+2. About cell: asymmetric layout, facts, field log, Joining card.
+3. Work cell: four project panels + detail markup (FLIP comes in phase 4).
+4. Toolkit cell: charge-level groups. Now & Next cell. Contact cell.
+5. Tighten the heading focus ring (fit-content) once real layouts exist.
 
 ## Open decisions
 
@@ -52,7 +56,10 @@ npm install
 npm run dev            # http://localhost:5173
 npm run build && npm run check:budget
 npm run lint
+npm run e2e            # Playwright: nav, hash, wheel, swipe, reduced motion
 ```
+
+Run dev servers/previews in the background and put a timeout on every command.
 
 Design lab: `npm run dev` then open http://localhost:5173/lab.html
 
