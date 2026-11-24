@@ -1,0 +1,307 @@
+{
+  "meta": {
+    "title": "Vansh Dixit — BatteryOrVansh",
+    "description": "Vansh Dixit: CS student in Lucknow, learning data analysis and machine learning, joining InMobi Group in January 2027. A portfolio built as a deck of battery cells.",
+    "url": "https://batteryorvansh.github.io/",
+    "locale": "en_IN",
+    "themeColor": "#110C0E",
+    "ogImage": "/og.png",
+    "ogImageAlt": "Vansh Dixit, BatteryOrVansh: a charge bar filling across six cells."
+  },
+  "person": {
+    "name": "Vansh Dixit",
+    "firstName": "Vansh",
+    "lastName": "Dixit",
+    "handle": "BatteryOrVansh",
+    "location": "Lucknow, Uttar Pradesh",
+    "email": "officialvanshdixit@gmail.com"
+  },
+  "ui": {
+    "deckLabel": "Portfolio, six cells",
+    "cellLabel": "Cell {n} of {total}: {title}",
+    "chargeLabel": "Charge",
+    "chargeNavLabel": "Jump to a cell",
+    "prev": "Previous cell",
+    "next": "Next cell",
+    "hint": "← → keys, swipe or scroll",
+    "close": "Close",
+    "openProject": "Open {name}",
+    "closeProject": "Close {name}",
+    "skipToContent": "Skip to content",
+    "noscript": "Navigation works without JavaScript: every cell is listed below as a normal page section."
+  },
+  "slides": {
+    "boot": {
+      "id": "boot",
+      "num": "00",
+      "title": "Boot",
+      "intro": {
+        "lines": [
+          "cell check ........ 6/6",
+          "fonts ............. warm",
+          "coffee ............ low",
+          "status ............ charging"
+        ],
+        "chargedLabel": "Charged enough.",
+        "question": "There's a quiet ambient track. Want it on? You can change your mind later, top right.",
+        "enterSound": "Enter with sound",
+        "enterSilent": "Enter silent",
+        "skip": "Skip intro"
+      },
+      "kicker": "BatteryOrVansh",
+      "oneLiner": "CS student in Lucknow, teaching myself to make data say something useful. Joining InMobi Group in January 2027.",
+      "annotation": "fig. 00 — resting voltage",
+      "scribble": "that's me"
+    },
+    "about": {
+      "id": "about",
+      "num": "01",
+      "title": "About",
+      "heading": "Low on hype, high on reps.",
+      "body": [
+        "I'm Vansh. I study computer science at BBD University in Lucknow and co-founded WaterPlane, a small team that builds digital work for clients.",
+        "I come from a defence background, so I like a plan, a checklist and actually finishing the thing. At 16 I co-founded Juvenile Foundation, which is where I first picked up design, SEO and running a project with other people.",
+        "Right now I'm learning data analysis and machine learning properly: Pandas, NumPy, plots, and a lot of staring at messy CSVs until they confess."
+      ],
+      "facts": [
+        {
+          "label": "based in",
+          "value": "Lucknow, UP"
+        },
+        {
+          "label": "studying",
+          "value": "B.Tech CSE, BBD University"
+        },
+        {
+          "label": "co-founded",
+          "value": "WaterPlane"
+        },
+        {
+          "label": "learning",
+          "value": "data analysis, machine learning"
+        },
+        {
+          "label": "joining",
+          "value": "InMobi Group, Jan 2027"
+        }
+      ],
+      "logTitle": "Field log — hackathons",
+      "log": [
+        {
+          "when": "Nov 2023",
+          "what": "Hack-A-Run, BBD University",
+          "note": "1st place"
+        },
+        {
+          "when": "Mar 2025",
+          "what": "TechKriti × NFRA, IIT Kanpur",
+          "note": "PRAMAAN"
+        },
+        {
+          "when": "Jul 2025",
+          "what": "Bhartiya Antariksh Hackathon, ISRO",
+          "note": "Vaayu Darshak"
+        },
+        {
+          "when": "2025",
+          "what": "Smart India Hackathon",
+          "note": "MANOBAL"
+        },
+        {
+          "when": "Oct 2025",
+          "what": "Vaultheist ISTE, CGC Mohali",
+          "note": "Glide UpSkill"
+        }
+      ],
+      "joining": {
+        "label": "Joining",
+        "text": "InMobi Group, January 2027. Analyst intern, business analysis and ad operations.",
+        "todo": "TODO(Vansh): confirm the exact title and wording InMobi used in your offer."
+      },
+      "todo": "TODO(Vansh): confirm current year of study and that the defence-background line is how you want to put it."
+    },
+    "work": {
+      "id": "work",
+      "num": "02",
+      "title": "Work",
+      "heading": "Four things I built to find out how.",
+      "caption": "Tap a cell to open it.",
+      "projects": [
+        {
+          "id": "focusboard",
+          "name": "FocusBoard",
+          "year": "TODO(Vansh): year",
+          "tagline": "TODO(Vansh): one line on what FocusBoard does and who it's for.",
+          "summary": "TODO(Vansh): two or three sentences: the problem, what you built, what you learned.",
+          "role": "TODO(Vansh): your role.",
+          "stack": ["TODO(Vansh): stack"],
+          "links": [
+            {
+              "label": "Code",
+              "href": "TODO(Vansh): repo or demo URL"
+            }
+          ]
+        },
+        {
+          "id": "adops-toolkit",
+          "name": "AdOps Toolkit",
+          "year": "TODO(Vansh): year",
+          "tagline": "TODO(Vansh): one line on what AdOps Toolkit does.",
+          "summary": "TODO(Vansh): two or three sentences: the problem, what you built, what you learned.",
+          "role": "TODO(Vansh): your role.",
+          "stack": ["TODO(Vansh): stack"],
+          "links": [
+            {
+              "label": "Code",
+              "href": "TODO(Vansh): repo or demo URL"
+            }
+          ]
+        },
+        {
+          "id": "adpulse",
+          "name": "AdPulse",
+          "year": "TODO(Vansh): year",
+          "tagline": "TODO(Vansh): one line on what AdPulse does.",
+          "summary": "TODO(Vansh): two or three sentences: the problem, what you built, what you learned.",
+          "role": "TODO(Vansh): your role.",
+          "stack": ["TODO(Vansh): stack"],
+          "links": [
+            {
+              "label": "Code",
+              "href": "TODO(Vansh): repo or demo URL"
+            }
+          ]
+        },
+        {
+          "id": "this-site",
+          "name": "This site",
+          "year": "2026",
+          "tagline": "A portfolio you charge as you read it.",
+          "summary": "Six full-screen cells and a charge bar that fills as you move. No framework: Vite, TypeScript, hand-written CSS and GSAP, with a small Web Audio player that fades songs in and out instead of slamming them.",
+          "role": "Concept, design and build.",
+          "stack": ["TypeScript", "Vite", "GSAP", "CSS", "Web Audio API"],
+          "links": [
+            {
+              "label": "Code",
+              "href": "https://github.com/BatteryOrVansh/BatteryOrVansh.github.io"
+            }
+          ]
+        }
+      ]
+    },
+    "toolkit": {
+      "id": "toolkit",
+      "num": "03",
+      "title": "Toolkit",
+      "heading": "Honest charge levels.",
+      "caption": "Grouped by how well I know them, not by how good they look on a list.",
+      "groups": [
+        {
+          "level": 3,
+          "name": "Full charge",
+          "note": "I reach for these without opening the docs.",
+          "items": ["Python", "JavaScript", "HTML & CSS", "Git & GitHub"]
+        },
+        {
+          "level": 2,
+          "name": "Holding charge",
+          "note": "Comfortable, with the docs open in a tab.",
+          "items": ["React", "Node.js", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Linux CLI"]
+        },
+        {
+          "level": 1,
+          "name": "Charging",
+          "note": "Learning these right now, and it shows.",
+          "items": ["Machine learning", "Java", "C and C++", "MongoDB"]
+        }
+      ],
+      "todo": "TODO(Vansh): move each skill to the level you would defend in an interview. Groups are a first draft from the old site's skill list."
+    },
+    "now": {
+      "id": "now",
+      "num": "04",
+      "title": "Now & Next",
+      "heading": "Now, and next.",
+      "now": {
+        "label": "Now",
+        "items": [
+          {
+            "kind": "building",
+            "text": "This site, one cell at a time."
+          },
+          {
+            "kind": "studying",
+            "text": "Data analysis and machine learning, from the maths up."
+          },
+          {
+            "kind": "building",
+            "text": "TODO(Vansh): anything else you're building right now."
+          }
+        ]
+      },
+      "next": {
+        "label": "Next",
+        "date": "Jan 2027",
+        "title": "Joining InMobi Group",
+        "text": "Analyst intern, business analysis and ad operations.",
+        "todo": "TODO(Vansh): confirm exact wording, team name and location if you want them shown."
+      },
+      "updated": "Updated November 2026"
+    },
+    "contact": {
+      "id": "contact",
+      "num": "05",
+      "title": "Contact",
+      "heading": "Full charge. Say hi.",
+      "body": "Email is the fastest way to reach me. I reply quicker than my phone battery drains.",
+      "links": [
+        {
+          "label": "Email",
+          "value": "officialvanshdixit@gmail.com",
+          "href": "mailto:officialvanshdixit@gmail.com"
+        },
+        {
+          "label": "GitHub",
+          "value": "@BatteryOrVansh",
+          "href": "https://github.com/BatteryOrVansh"
+        },
+        {
+          "label": "LinkedIn",
+          "value": "in/vanshdixit",
+          "href": "https://www.linkedin.com/in/vanshdixit/"
+        },
+        {
+          "label": "Resume",
+          "value": "PDF",
+          "href": "TODO(Vansh): resume URL (or drop a PDF at public/resume.pdf and use /resume.pdf)"
+        }
+      ],
+      "footer": "© 2026 Vansh Dixit. Set in Fraunces, Hanken Grotesk and Martian Mono."
+    }
+  },
+  "order": ["boot", "about", "work", "toolkit", "now", "contact"],
+  "player": {
+    "toggleLabel": "Music",
+    "openLabel": "Open music player",
+    "closeLabel": "Close music player",
+    "nowPlaying": "Now playing",
+    "library": "Library",
+    "play": "Play",
+    "pause": "Pause",
+    "prev": "Previous song",
+    "next": "Next song",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "volume": "Volume",
+    "license": "License",
+    "source": "source",
+    "off": "Music is off"
+  },
+  "notFound": {
+    "title": "Cell not found",
+    "code": "404",
+    "heading": "This cell is flat.",
+    "body": "Nothing charges here. The page you wanted moved, or never existed.",
+    "back": "Back to the deck"
+  }
+}

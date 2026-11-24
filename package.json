@@ -12,7 +12,8 @@
     "lint": "eslint . && node scripts/lint-copy.mjs",
     "lint:copy": "node scripts/lint-copy.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "todos": "node scripts/list-todos.mjs"
   },
   "engines": {
     "node": ">=20"
