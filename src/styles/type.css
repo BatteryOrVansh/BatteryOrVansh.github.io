@@ -12,7 +12,10 @@
 .display em,
 .heading em {
   font-style: italic;
-  font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;
+  font-variation-settings:
+    'SOFT' 100,
+    'WONK' 1,
+    'opsz' 144;
   color: var(--amber);
 }
 
@@ -37,7 +40,10 @@
 /* the oversized cell numbers that sit behind each slide */
 .numeral {
   font-family: var(--font-display);
-  font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 144;
+  font-variation-settings:
+    'SOFT' 100,
+    'WONK' 1,
+    'opsz' 144;
   font-weight: 200;
   font-size: var(--step-numeral);
   line-height: 0.72;

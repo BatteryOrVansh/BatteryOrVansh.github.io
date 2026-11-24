@@ -28,11 +28,7 @@ export const scribbles = {
     ),
   /** little lightning bolt, for "charging" */
   bolt: (cls = '') =>
-    svg(
-      '0 0 40 60',
-      '<path pathLength="1" d="M24 3 8 33l14 1-6 23 18-32-14-1 7-21"/>',
-      cls,
-    ),
+    svg('0 0 40 60', '<path pathLength="1" d="M24 3 8 33l14 1-6 23 18-32-14-1 7-21"/>', cls),
   /** zig-zag squiggle used as a divider */
   squiggle: (cls = '') =>
     svg(

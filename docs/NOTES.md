@@ -27,3 +27,18 @@ old-site-v1` (HTTP 403); branch pushes work. The tag exists locally at
   artifact, instead of uploading to public temporary storage.
 - **ESLint + Prettier only.** No stylelint: one less tool to maintain for a
   small hand-written stylesheet.
+
+## Phase 1
+
+- **Fonts copied from @fontsource, not installed as a dependency.** The woff2
+  files live in `public/fonts` (latin subset). Fraunces uses the "full" axis
+  file (opsz, wght, SOFT, WONK; 121 KB). Italic is declared but only fetched
+  when italic text is on screen. Metric-adjusted local fallbacks reduce swap shift.
+- **Orbs are radial gradients, not `filter: blur()`.** Same look, far cheaper;
+  they drift on `transform` only. Grain is a static SVG turbulence tile that
+  jitters in 6 steps per 1.2 s. Both stop under reduced motion.
+- **Charge bar fill is pure CSS.** `--level` (number of filled cells, can be
+  fractional) drives each segment via `clamp(0, level - i, 1)`; JS only tweens
+  one variable.
+- **Design lab copy is not in site.json.** It is a developer page (`/lab.html`,
+  noindex, unlinked), so its labels aren't site copy.

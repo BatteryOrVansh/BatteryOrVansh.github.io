@@ -4,12 +4,12 @@ Resume from this file alone. Spec: `PRD.md`. Rules: `CLAUDE.md`. Decisions: `doc
 
 ## Current phase
 
-Phase 1: Design system (starting).
+Phase 2: Deck engine (starting).
 
 ## Phase checklist
 
 - [x] 0 Scaffold
-- [ ] 1 Design system
+- [x] 1 Design system
 - [ ] 2 Deck engine
 - [ ] 3 Slide layouts and content
 - [ ] 4 Motion pass + music player
@@ -28,14 +28,16 @@ Phase 1: Design system (starting).
 - CONTENT_TODO.md.
 - CI (`ci.yml`: lint, format, build, JS budget, Lighthouse), Pages deploy
   (`deploy.yml`, main only), vercel.json, netlify.toml.
+- Phase 1: self-hosted fonts, tokens, type roles, glass, orbs + grain, buttons,
+  scribbles, charge-bar styles, hidden design lab at `/lab.html`.
 
 ## Next 5 actions
 
-1. Copy Fraunces / Hanken Grotesk / Martian Mono woff2 into public/fonts, @font-face.
-2. tokens.css (palette, spacing, type scale, easing) and base.css.
-3. Glass component, drifting orbs, film grain.
-4. Hidden design lab page (lab.html) showing every component.
-5. Charge-bar and button styles in the lab.
+1. Build-time render plugin: site.json -> cell markup in index.html.
+2. Deck engine: horizontal track, goTo(index), cell `inert` handling.
+3. Charge bar wired to the deck (--level tween, click to jump).
+4. Hash routing (#work), keyboard, wheel, swipe.
+5. Focus management + live-region announcements.
 
 ## Open decisions
 
@@ -49,6 +51,8 @@ npm run dev            # http://localhost:5173
 npm run build && npm run check:budget
 npm run lint
 ```
+
+Design lab: `npm run dev` then open http://localhost:5173/lab.html
 
 ## Known issues
 
