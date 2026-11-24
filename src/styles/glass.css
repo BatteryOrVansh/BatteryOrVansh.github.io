@@ -1,0 +1,73 @@
+/* Glass panels. Bone tint ~7%, blur 24px + saturate 140%, 1px bone border ~18%,
+   a soft inner highlight on the top edge, and an optional moving specular
+   highlight driven by --mx / --my (set by the tilt module). */
+
+.glass {
+  --mx: 50%;
+  --my: 0%;
+  --spec: 0;
+  position: relative;
+  isolation: isolate;
+  background: var(--glass-tint);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-glass);
+  box-shadow:
+    inset 0 1px 0 0 var(--glass-highlight),
+    inset 0 -1px 0 0 rgb(var(--ink-rgb) / 0.25),
+    inset 0 0 24px 0 rgb(var(--bone-rgb) / 0.035),
+    var(--glass-shadow);
+}
+
+/* top-left sheen that makes it read as a pane, not a box */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    155deg,
+    rgb(var(--bone-rgb) / 0.09) 0%,
+    rgb(var(--bone-rgb) / 0) 38%
+  );
+  pointer-events: none;
+}
+
+/* specular hotspot that follows the pointer */
+.glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    28rem circle at var(--mx) var(--my),
+    rgb(var(--bone-rgb) / 0.14),
+    rgb(var(--amber-rgb) / 0.04) 35%,
+    transparent 60%
+  );
+  opacity: var(--spec);
+  transition: opacity var(--dur-mid) var(--ease-out);
+  pointer-events: none;
+}
+
+.glass--strong {
+  background: var(--glass-tint-strong);
+}
+
+.glass--pill {
+  border-radius: var(--radius-pill);
+}
+
+.glass--tight {
+  border-radius: var(--radius-m);
+}
+
+/* when backdrop-filter isn't available, fall back to a denser tint */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: rgb(var(--oxblood-rgb) / 0.86);
+  }
+}
