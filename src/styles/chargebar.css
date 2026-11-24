@@ -130,8 +130,8 @@
   pointer-events: none;
 }
 
-.charge__cell:hover .charge__label,
-.charge__cell:focus-visible .charge__label {
+.charge__item:hover .charge__label,
+.charge__cell:focus-visible + .charge__label {
   opacity: 1;
   translate: 0 0;
 }
