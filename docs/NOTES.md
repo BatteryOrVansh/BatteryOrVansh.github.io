@@ -72,3 +72,18 @@ old-site-v1` (HTTP 403); branch pushes work. The tag exists locally at
   Skip, then moves to "Enter with sound" when the buttons appear.
 - **Boot cell decoration** ("that's me" scribble, fig. caption) comes from
   site.json (`scribble`, `annotation`), so copy stays in one place.
+
+## Phase 3: remaining cells
+
+- **Cells overflow on short screens by design.** Each `.cell` scrolls vertically
+  on its own; the wheel handler lets a tall cell scroll first and only changes
+  cell at its edge. Desktop layouts aim to fit 900px tall; phones scroll.
+- **Project detail is an overlay inside the Work cell** (absolute, not fixed:
+  the track has a transform, which would break `position: fixed`). Open details
+  inert the panels, lock deck input, close on Esc/close button/any cell change.
+  Without JS the details simply follow the panels as normal sections.
+- **Toolkit uses a 3-cell battery glyph per group**, not bars: it is the
+  charge-bar motif at small size and carries an aria-label ("2 of 3 cells charged").
+- **Dropped the "joining" fact from About's facts list**; the Joining card says it
+  (one statement, not two).
+- **TODO(Vansh) links render as inert "link pending" marks**, never as `href="#"` links.

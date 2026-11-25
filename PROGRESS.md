@@ -4,14 +4,14 @@ Resume from this file alone. Spec: `PRD.md`. Rules: `CLAUDE.md`. Decisions: `doc
 
 ## Current phase
 
-Phase 3: Slide layouts and content (Boot done; About next).
+Phase 4: Motion pass, then music player (starting).
 
 ## Phase checklist
 
 - [x] 0 Scaffold
 - [x] 1 Design system
 - [x] 2 Deck engine
-- [ ] 3 Slide layouts and content
+- [x] 3 Slide layouts and content
 - [ ] 4 Motion pass + music player
 - [ ] 5 Responsive and accessibility pass
 - [ ] 6 Performance, SEO, OG image, favicon, sitemap, 404
@@ -33,7 +33,9 @@ Phase 3: Slide layouts and content (Boot done; About next).
 - Phase 1: self-hosted fonts, tokens, type roles, glass, orbs + grain, buttons,
   scribbles, charge-bar styles, hidden design lab at `/lab.html`.
 
-- Phase 3 (partial): Boot cell + first-visit intro/sound gate (`src/deck/intro.ts`,
+- Phase 3: all six cells render from site.json (`src/content/slides/*.ts`,
+  `src/styles/<cell>.css`). Work details: `src/deck/work.ts` (plain show/hide for now).
+  Boot cell + first-visit intro/sound gate (`src/deck/intro.ts`,
   `src/content/slides/boot.ts`, `src/state.ts`). Emits `intro:done` {sound, gesture}.
 - Phase 2: deck engine (`src/deck/`): inert cells, GSAP track, charge-level tween,
   hash routing + back button, keys/wheel/swipe/click, focus handoff, live region.
@@ -41,11 +43,11 @@ Phase 3: Slide layouts and content (Boot done; About next).
 
 ## Next 5 actions
 
-1. About cell: asymmetric layout, facts, field log, Joining card.
-2. Work cell: four project panels (+ detail markup; FLIP in phase 4).
-3. Toolkit cell (charge-level groups), then Now & Next, then Contact.
-4. One slides.css per cell, `src/content/slides/<id>.ts` per renderer.
-5. Tighten heading focus ring (fit-content) across cells; check 360px phones.
+1. src/motion: split-text reveals on headings, per-cell entrance (GSAP), reduced-motion safe.
+2. Magnetic buttons, pointer-tilt glass cards (sets --mx/--my/--spec), custom cursor (desktop only).
+3. FLIP project panel -> detail (replace plain open/close in `src/deck/work.ts`).
+4. Music engine (Web Audio, GainNode fades, startAt 10s, loop) + `scripts/make_demo_tracks.py`.
+5. Player UI (equalizer toggle, FLIP card, library, license) + MUSIC.md.
 
 ## Open decisions
 
