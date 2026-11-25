@@ -3,6 +3,9 @@ import type { Site } from './types';
 import { esc } from './html';
 import { renderAbout } from './slides/about';
 import { renderWork } from './slides/work';
+import { renderToolkit } from './slides/toolkit';
+import { renderNow } from './slides/now';
+import { renderContact } from './slides/contact';
 import { renderBoot, renderIntro } from './slides/boot';
 import { renderAtmosphere, renderChrome, renderDeck } from './render';
 
@@ -32,6 +35,9 @@ export function renderPage(site: Site, page: 'index' | '404'): PageParts {
         boot: renderBoot(site),
         about: renderAbout(site),
         work: renderWork(site),
+        toolkit: renderToolkit(site),
+        now: renderNow(site),
+        contact: renderContact(site),
       }),
       renderIntro(site),
     ].join('\n'),

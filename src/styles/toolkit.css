@@ -1,0 +1,124 @@
+.toolkit {
+  display: grid;
+  gap: var(--space-l);
+  align-content: start;
+}
+
+.toolkit__head {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.toolkit__heading {
+  font-size: var(--step-5);
+}
+
+.levels {
+  display: grid;
+  gap: var(--space-l);
+}
+
+.level {
+  display: grid;
+  gap: var(--space-2xs);
+  max-width: 44rem;
+  padding-left: var(--space-s);
+  border-left: 1px solid var(--rule);
+}
+
+/* little battery glyph: 3 cells, filled = how well I know it */
+.level__cells {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  width: fit-content;
+  border: 1px solid var(--glass-border);
+  border-radius: 5px;
+  position: relative;
+}
+
+.level__cells::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  translate: 0 -50%;
+  width: 3px;
+  height: 8px;
+  border-radius: 0 2px 2px 0;
+  background: var(--glass-border);
+}
+
+.level__cells i {
+  width: 1.1rem;
+  height: 0.6rem;
+  border-radius: 2px;
+  background: rgb(var(--bone-rgb) / 0.1);
+}
+
+.level__cells i.on {
+  background: var(--amber);
+  box-shadow: 0 0 8px rgb(var(--amber-rgb) / 0.5);
+}
+
+.level--1 .level__cells i.on {
+  background: var(--ember);
+  box-shadow: 0 0 8px rgb(var(--ember-rgb) / 0.5);
+}
+
+.level__name {
+  font-size: var(--step-3);
+}
+
+.level--3 .level__name {
+  font-size: var(--step-5);
+  font-weight: 340;
+}
+
+.level--2 .level__name {
+  font-size: var(--step-4);
+}
+
+.level__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0;
+  margin-top: var(--space-2xs);
+  font-family: var(--font-display);
+  font-variation-settings: var(--fraunces-text);
+  font-size: var(--step-1);
+}
+
+/* separator trails each item, so a wrapped line never starts with a slash */
+.level__items li:not(:last-child)::after {
+  content: '/';
+  margin-inline: 0.55em;
+  color: var(--amber);
+  opacity: 0.7;
+}
+
+.level--3 .level__items {
+  font-size: var(--step-2);
+}
+
+.toolkit__todo {
+  max-width: 50ch;
+}
+
+@media (min-width: 900px) {
+  .levels {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--space-l) var(--space-m);
+    align-items: start;
+  }
+  .level--3 {
+    grid-column: 1 / 7;
+  }
+  .level--2 {
+    grid-column: 7 / -1;
+    margin-top: var(--space-xl);
+  }
+  .level--1 {
+    grid-column: 3 / 9;
+  }
+}
