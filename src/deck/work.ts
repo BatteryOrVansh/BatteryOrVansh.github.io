@@ -1,6 +1,7 @@
 // Work cell: open a project panel into its detail view, close it again.
 // (Phase 4 swaps the plain show/hide for a FLIP animation in src/motion/flip.ts.)
 import type { Deck } from './deck';
+import { collapseTo, expandFrom } from '../motion/flip';
 
 export function initWork(deck: Deck): void {
   const cell = document.getElementById('work');
@@ -18,6 +19,7 @@ export function initWork(deck: Deck): void {
     cell.scrollTop = 0;
     cell.classList.add('has-detail');
     detail.classList.add('is-open');
+    expandFrom(from, detail);
     from.setAttribute('aria-expanded', 'true');
     main.setAttribute('inert', '');
     deck.locked = true;
@@ -25,17 +27,21 @@ export function initWork(deck: Deck): void {
     document.dispatchEvent(new CustomEvent('work:open', { detail: { id } }));
   };
 
-  const close = (restoreFocus = true) => {
+  const close = (restoreFocus = true, instant = false) => {
     if (!openId) return;
-    const detail = details.find((d) => d.dataset.detail === openId);
-    detail?.classList.remove('is-open');
+    const id = openId;
+    const detail = details.find((d) => d.dataset.detail === id);
+    const from = opener;
+    openId = null;
     cell.classList.remove('has-detail');
     main.removeAttribute('inert');
-    opener?.setAttribute('aria-expanded', 'false');
+    from?.setAttribute('aria-expanded', 'false');
     deck.locked = false;
-    if (restoreFocus) opener?.focus({ preventScroll: true });
-    document.dispatchEvent(new CustomEvent('work:close', { detail: { id: openId } }));
-    openId = null;
+    const finish = () => detail?.classList.remove('is-open');
+    if (detail && from && !instant) collapseTo(from, detail, finish);
+    else finish();
+    if (restoreFocus) from?.focus({ preventScroll: true });
+    document.dispatchEvent(new CustomEvent('work:close', { detail: { id } }));
   };
 
   cell
@@ -49,5 +55,5 @@ export function initWork(deck: Deck): void {
     }
   });
   // leaving the cell by hash/back closes the detail without stealing focus
-  document.addEventListener('deck:change', () => close(false));
+  document.addEventListener('deck:change', () => close(false, true));
 }
