@@ -8,12 +8,14 @@ import { initReveal } from './motion/reveal';
 import { initMagnetic } from './motion/magnetic';
 import { initTilt } from './motion/tilt';
 import { initCursor } from './motion/cursor';
+import { initPlayer } from './player';
 
 const root = document.querySelector<HTMLElement>('.deck');
 if (root) {
   const deck = new Deck(root);
   bindInput(deck);
   initWork(deck);
+  initPlayer();
   initIntro(deck);
   initReveal();
   initTilt();

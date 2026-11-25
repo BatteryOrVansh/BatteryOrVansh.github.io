@@ -1,7 +1,7 @@
 // Deck input: arrow keys, wheel, swipe, charge-bar cells, buttons, hash changes.
 import type { Deck } from './deck';
 
-const TYPING = 'input, textarea, select, [contenteditable="true"], [role="slider"]';
+const TYPING = 'input, textarea, select, [contenteditable="true"], [role="slider"], .player__card';
 
 export function bindInput(deck: Deck): void {
   // buttons
