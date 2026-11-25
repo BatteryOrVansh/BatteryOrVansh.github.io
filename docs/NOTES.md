@@ -124,3 +124,22 @@ old-site-v1` (HTTP 403); branch pushes work. The tag exists locally at
   (Fraunces 121 to 79 KB, italic 150 to 96 KB). Made with `fonttools`
   (`pyftsubset --unicodes=... --flavor=woff2`). If new characters appear in
   site.json, re-subset from the original @fontsource files.
+
+## Phase 6: performance and SEO
+
+- **Measured before changing anything:** LCP was 3.0 s with the hidden-heading
+  approach, but the LCP element was the outlined numeral (`.cell__numeral`), not a
+  heading, so the reveal was not the cost. The cost was font weight. Subsetting the
+  fonts brought LCP to about 2.4 to 2.6 s and performance to 95 to 97. The
+  hidden-until-armed approach stays.
+- **SEO 90 -> 100:** the missing `robots.txt` (the preview server answered with
+  index.html, which is invalid) and an empty-href anchor in the player. Both fixed.
+- **robots.txt, sitemap.xml and site.webmanifest are emitted by the Vite plugin**
+  from `site.json` (meta.url), so there is one place to change the domain.
+  `lab.html` is disallowed in robots and `noindex`.
+- **JSON-LD is a Person only** (name, handle, location, GitHub/LinkedIn sameAs).
+  InMobi is deliberately not in structured data: it is a future role, not employment yet.
+- **OG image and icons are generated** by Playwright scripts into `public/`
+  (`og.jpg` 55 KB, 1200x630). Re-run `node scripts/make-og.cjs` after changing
+  the name or one-liner in site.json.
+- **404.html** has the deck's look but no deck JS (CSS entry only).

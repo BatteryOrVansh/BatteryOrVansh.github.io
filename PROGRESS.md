@@ -4,7 +4,7 @@ Resume from this file alone. Spec: `PRD.md`. Rules: `CLAUDE.md`. Decisions: `doc
 
 ## Current phase
 
-Phase 6: Performance, SEO, OG image, favicon, sitemap, 404 (starting).
+Phase 7: README and DEPLOY.md (starting).
 
 ## Phase checklist
 
@@ -14,7 +14,7 @@ Phase 6: Performance, SEO, OG image, favicon, sitemap, 404 (starting).
 - [x] 3 Slide layouts and content
 - [x] 4 Motion pass + music player
 - [x] 5 Responsive and accessibility pass
-- [ ] 6 Performance, SEO, OG image, favicon, sitemap, 404
+- [x] 6 Performance, SEO, OG image, favicon, sitemap, 404
 - [ ] 7 README and DEPLOY.md
 
 ## Done
@@ -33,6 +33,10 @@ Phase 6: Performance, SEO, OG image, favicon, sitemap, 404 (starting).
 - Phase 1: self-hosted fonts, tokens, type roles, glass, orbs + grain, buttons,
   scribbles, charge-bar styles, hidden design lab at `/lab.html`.
 
+- Phase 6: head (canonical, OG, Twitter, JSON-LD Person), robots/sitemap/manifest generated
+  from site.json at build, favicon set + OG image (scripts/make-icons.cjs, make-og.cjs), 404 page.
+  Lighthouse (3 runs, mobile sim): perf 95-96, a11y 100, best-practices 100, SEO 100, CLS 0,
+  LCP 2.6 s, JS 47 KB gzip. Hidden-heading approach kept: LCP element is the numeral, not a heading.
 - Phase 5: 360px and phone-landscape pass (no horizontal overflow), keyboard walkthrough
   (all focus rings visible, skip link fixed), reduced-motion audit incl. player card,
   no-JS fallback checked, fonts subset. Lighthouse (mobile sim): perf 96-97, a11y 100,
@@ -51,11 +55,11 @@ Phase 6: Performance, SEO, OG image, favicon, sitemap, 404 (starting).
 
 ## Next 5 actions
 
-1. SEO head: canonical, Open Graph, Twitter card, JSON-LD Person, robots.txt, sitemap.xml.
-2. Favicon set (SVG + PNG + apple-touch) and web manifest; theme-color.
-3. OG image 1200x630 (generated, optimised) from a script.
-4. 404.html page rendered from site.json (notFound strings) + Vite input.
-5. Re-run Lighthouse (SEO to 95+), then phase 7: README and DEPLOY.md.
+1. README.md (what it is, run, edit content, structure; no AI notes).
+2. DEPLOY.md with numbered beginner steps (preview, merge with a merge commit, Pages source = GitHub Actions, check live, restore from the `old-site` branch, custom domain, edit site.json).
+3. Final pass: lint, format:check, build, budget, e2e scripts.
+4. Regenerate CONTENT_TODO.md from `npm run todos`.
+5. Hand over: list what remains in CONTENT_TODO.md.
 
 ## Open decisions
 
