@@ -87,3 +87,31 @@ old-site-v1` (HTTP 403); branch pushes work. The tag exists locally at
 - **Dropped the "joining" fact from About's facts list**; the Joining card says it
   (one statement, not two).
 - **TODO(Vansh) links render as inert "link pending" marks**, never as `href="#"` links.
+
+## Phase 4: motion and music
+
+- **Reveals hide the cell until armed.** `.js:not(.is-ready) .cell__inner` is
+  transparent until `initReveal` runs; timers in `index.html` force `is-ready`
+  (and drop a stuck intro) after 2.5 s so a script error never leaves a blank or
+  covered page. Check LCP in phase 6 (hidden-then-revealed heading).
+- **Headings split into words (SplitText), no line mask:** Fraunces display
+  line-height is under 1, so a mask would clip descenders. Splits are reverted
+  after the animation.
+- **Tilt/magnetic/cursor only with a fine pointer and no reduced-motion.** The
+  cursor element is not even created otherwise.
+- **FLIP via `Flip.fit`** (`src/motion/flip.ts`): the detail/card is scaled onto
+  its source button, then released to its natural box; content fades in after.
+  Reduced motion: 0.2 s crossfade.
+- **Audio graph:** `<audio>` (streamed) -> fade gain -> volume gain -> output.
+  Volume uses a squared curve; mute is exactly 0. Songs loop back to `startAt`
+  (not 0) with a short fade. Hidden tab: fade out, pause, resume from the same
+  spot. Refresh: `setTargetAtTime` to 0, best effort.
+- **Returning visitors:** saved choice 'on' arms a first-gesture listener
+  (pointerdown/click/keydown/touchend); 'off' stays silent. First visit with a
+  deep link has no choice saved, so music stays off until the player is used.
+- **Player markup is rendered at build time** from `site.player` strings; track
+  titles, artists and licenses come from `public/music/library.json`.
+- **Intro actions are `inert` until ready** (not `visibility`), so focus can move
+  to "Enter with sound" the instant the buttons appear.
+- **Demo tracks** are generated (64 s each, about 1 MB, MP3 128 kbps) and are
+  original synthesis; replace them using MUSIC.md.

@@ -4,7 +4,7 @@ Resume from this file alone. Spec: `PRD.md`. Rules: `CLAUDE.md`. Decisions: `doc
 
 ## Current phase
 
-Phase 4: Motion pass, then music player (starting).
+Phase 5: Responsive and accessibility pass (starting).
 
 ## Phase checklist
 
@@ -12,7 +12,7 @@ Phase 4: Motion pass, then music player (starting).
 - [x] 1 Design system
 - [x] 2 Deck engine
 - [x] 3 Slide layouts and content
-- [ ] 4 Motion pass + music player
+- [x] 4 Motion pass + music player
 - [ ] 5 Responsive and accessibility pass
 - [ ] 6 Performance, SEO, OG image, favicon, sitemap, 404
 - [ ] 7 README and DEPLOY.md
@@ -33,6 +33,10 @@ Phase 4: Motion pass, then music player (starting).
 - Phase 1: self-hosted fonts, tokens, type roles, glass, orbs + grain, buttons,
   scribbles, charge-bar styles, hidden design lab at `/lab.html`.
 
+- Phase 4: motion (`src/motion/`: SplitText reveals, magnetic buttons, tilt + specular,
+  cursor, FLIP helper used by Work details and the player card) and the music player
+  (`src/player/`: Web Audio engine, UI; `scripts/make_demo_tracks.py`, 3 demo MP3s, MUSIC.md).
+  JS is ~47 KB gzipped (budget 120).
 - Phase 3: all six cells render from site.json (`src/content/slides/*.ts`,
   `src/styles/<cell>.css`). Work details: `src/deck/work.ts` (plain show/hide for now).
   Boot cell + first-visit intro/sound gate (`src/deck/intro.ts`,
@@ -43,11 +47,11 @@ Phase 4: Motion pass, then music player (starting).
 
 ## Next 5 actions
 
-1. src/motion: split-text reveals on headings, per-cell entrance (GSAP), reduced-motion safe.
-2. Magnetic buttons, pointer-tilt glass cards (sets --mx/--my/--spec), custom cursor (desktop only).
-3. FLIP project panel -> detail (replace plain open/close in `src/deck/work.ts`).
-4. Music engine (Web Audio, GainNode fades, startAt 10s, loop) + `scripts/make_demo_tracks.py`.
-5. Player UI (equalizer toggle, FLIP card, library, license) + MUSIC.md.
+1. 360px and small-landscape pass: every cell, the player card, the detail overlay.
+2. Keyboard-only walkthrough (intro, deck, detail, player), contrast check, focus order.
+3. Screen-reader labels audit (roles, live regions, link hints); axe or Lighthouse a11y.
+4. Reduced-motion audit of every module (reveal, orbs, grain, FLIP, cursor).
+5. Fix whatever Lighthouse flags; then phase 6 (SEO, OG image, favicon, sitemap, 404).
 
 ## Open decisions
 
@@ -61,6 +65,7 @@ npm run dev            # http://localhost:5173
 npm run build && npm run check:budget
 npm run lint
 npm run e2e            # Playwright: nav, hash, wheel, swipe, reduced motion
+node scripts/e2e/player.cjs   # player flow (preview must be running on :4173)
 ```
 
 Run dev servers/previews in the background and put a timeout on every command.
