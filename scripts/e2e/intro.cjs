@@ -1,3 +1,4 @@
+/* global rec */
 const { chromium } = require('playwright');
 (async () => {
   const b = await chromium.launch();
