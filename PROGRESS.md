@@ -4,7 +4,7 @@ Resume from this file alone. Spec: `PRD.md`. Rules: `CLAUDE.md`. Decisions: `doc
 
 ## Current phase
 
-Phase 7: README and DEPLOY.md (starting).
+All phases complete. Waiting on Vansh: fill the TODO(Vansh) fields (see CONTENT_TODO.md), then merge `redesign` into `main` with a merge commit (DEPLOY.md).
 
 ## Phase checklist
 
@@ -15,7 +15,7 @@ Phase 7: README and DEPLOY.md (starting).
 - [x] 4 Motion pass + music player
 - [x] 5 Responsive and accessibility pass
 - [x] 6 Performance, SEO, OG image, favicon, sitemap, 404
-- [ ] 7 README and DEPLOY.md
+- [x] 7 README and DEPLOY.md
 
 ## Done
 
@@ -33,6 +33,9 @@ Phase 7: README and DEPLOY.md (starting).
 - Phase 1: self-hosted fonts, tokens, type roles, glass, orbs + grain, buttons,
   scribbles, charge-bar styles, hidden design lab at `/lab.html`.
 
+- Phase 7: README.md and DEPLOY.md (preview, merge commit, Pages source = GitHub Actions,
+  live check, restore via revert + `old-site` branch, custom domain, editing site.json).
+  A clean `npm ci` + lint + build + budget passes from a fresh checkout, as CI does.
 - Phase 6: head (canonical, OG, Twitter, JSON-LD Person), robots/sitemap/manifest generated
   from site.json at build, favicon set + OG image (scripts/make-icons.cjs, make-og.cjs), 404 page.
   Lighthouse (3 runs, mobile sim): perf 95-96, a11y 100, best-practices 100, SEO 100, CLS 0,
@@ -55,15 +58,17 @@ Phase 7: README and DEPLOY.md (starting).
 
 ## Next 5 actions
 
-1. README.md (what it is, run, edit content, structure; no AI notes).
-2. DEPLOY.md with numbered beginner steps (preview, merge with a merge commit, Pages source = GitHub Actions, check live, restore from the `old-site` branch, custom domain, edit site.json).
-3. Final pass: lint, format:check, build, budget, e2e scripts.
-4. Regenerate CONTENT_TODO.md from `npm run todos`.
-5. Hand over: list what remains in CONTENT_TODO.md.
+1. Vansh: fill the `TODO(Vansh)` fields in `content/site.json` (`npm run todos`; `CONTENT_TODO.md`).
+2. Vansh: add a resume PDF and, if wanted, your own music (`MUSIC.md`).
+3. Vansh: preview `redesign` (DEPLOY.md step 1), then merge into `main` with a merge commit.
+4. Vansh: Settings, Pages, Source = GitHub Actions; check the live site (DEPLOY.md steps 3 and 4).
+5. Optional: custom domain (DEPLOY.md step 6); decide about the old Vercel/Supabase/Firebase projects.
 
 ## Open decisions
 
-- None blocking.
+- Keep or drop the hackathon field log on the About cell (from the old site).
+- Keep the generated demo music or replace it with your own.
+- What to do with the old Vercel project (it will rebuild `main` after the merge).
 
 ## How to run and test
 
@@ -84,5 +89,7 @@ Design lab: `npm run dev` then open http://localhost:5173/lab.html
 
 ## Known issues
 
-- (none)
-- The page is an empty shell until Phase 2/3.
+- Placeholders: 23 `TODO(Vansh)` fields remain on purpose (CONTENT_TODO.md).
+- Charge-bar cells are 44px tall hit areas but about 36px wide at 360px (they sit side by side).
+- Preview server answers unknown paths with 200; GitHub Pages and Netlify serve `404.html` with a real 404.
+- Lighthouse numbers are from a local mobile simulation; expect a few points of variance in CI.
