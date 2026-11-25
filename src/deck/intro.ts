@@ -36,6 +36,9 @@ export function initIntro(deck: Deck): void {
 
   const cells = [...el.querySelectorAll<HTMLElement>('.intro__cells i')];
   const first = el.querySelector<HTMLButtonElement>('[data-enter="on"]')!;
+  // not reachable (keyboard or screen reader) until the charge animation is done or skipped
+  const actions = el.querySelector<HTMLElement>('.intro__actions')!;
+  actions.inert = true;
   let ready = false;
 
   const reveal = () => {
@@ -48,8 +51,8 @@ export function initIntro(deck: Deck): void {
       c.style.setProperty('--i', String(i));
     });
     el.classList.add('is-ready');
-    // buttons un-hide after the staggered transition; focus once they can take it
-    window.setTimeout(() => first.focus({ preventScroll: true }), 360);
+    actions.inert = false;
+    first.focus({ preventScroll: true });
   };
 
   el.querySelector<HTMLElement>('[data-skip]')?.focus({ preventScroll: true });

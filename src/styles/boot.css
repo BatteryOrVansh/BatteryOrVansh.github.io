@@ -196,19 +196,16 @@
 .intro__q,
 .intro__actions {
   opacity: 0;
-  visibility: hidden;
   translate: 0 8px;
   transition:
     opacity var(--dur-slow) var(--ease-out),
-    translate var(--dur-slow) var(--ease-out),
-    visibility 0s var(--dur-slow);
+    translate var(--dur-slow) var(--ease-out);
 }
 
 .intro.is-ready .intro__charged,
 .intro.is-ready .intro__q,
 .intro.is-ready .intro__actions {
   opacity: 1;
-  visibility: visible;
   translate: 0 0;
   transition-delay: 0s;
 }
