@@ -65,5 +65,5 @@ Design lab: `npm run dev` then open http://localhost:5173/lab.html
 
 ## Known issues
 
-- Vansh will create an `old-site` branch on GitHub himself; do not retry the tag push.
+- (none)
 - The page is an empty shell until Phase 2/3.

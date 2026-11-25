@@ -36,7 +36,7 @@ left, then regenerate this list (see the bottom of this file).
 
 ## Outside site.json
 
-- [ ] Create the `old-site` branch on GitHub from the old main (commit f3ce870) as a backup.
+- [x] `old-site` branch created on GitHub (done by Vansh).
       `git tag old-site-v1 f3ce870 && git push origin old-site-v1`
 - [ ] Decide whether the hackathon "field log" on the About cell stays (it is
       from the old site; keep only what you can talk about).
