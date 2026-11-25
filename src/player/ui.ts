@@ -15,7 +15,7 @@ export function initPlayerUi(engine: Engine): void {
   const status = $('[data-status]');
   const list = $<HTMLUListElement>('[data-list]');
   const license = $('[data-license]');
-  const source = $<HTMLAnchorElement>('[data-source]');
+  const sourceSlot = $('[data-source-slot]');
   const play = $<HTMLButtonElement>('[data-p="play"]');
   const mute = $<HTMLButtonElement>('[data-p="mute"]');
   const vol = $<HTMLInputElement>('[data-p="volume"]');
@@ -103,10 +103,16 @@ export function initPlayerUi(engine: Engine): void {
     artist.textContent = t?.artist ?? '';
     status.textContent = (s.on ? status.dataset.labelOn : status.dataset.labelOff) ?? '';
     license.textContent = t?.license ?? '';
+    sourceSlot.replaceChildren();
     if (t?.sourceUrl) {
-      source.href = t.sourceUrl;
-      source.hidden = false;
-    } else source.hidden = true;
+      const a = document.createElement('a');
+      a.className = 'link';
+      a.href = t.sourceUrl;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.textContent = sourceSlot.dataset.label ?? '';
+      sourceSlot.append(a);
+    }
     play.setAttribute('aria-label', play.dataset[s.on ? 'labelPause' : 'labelPlay'] ?? '');
     mute.setAttribute('aria-pressed', String(s.muted));
     mute.setAttribute('aria-label', mute.dataset[s.muted ? 'labelUnmute' : 'labelMute'] ?? '');

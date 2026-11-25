@@ -101,9 +101,7 @@ export function renderPlayer(site: Site): string {
       <ul class="player__list" data-list></ul>
       <p class="player__license mono mono--dim">
         <span>${t(p.license ?? '')}:</span> <span data-license></span>
-        <a class="link" data-source target="_blank" rel="noopener noreferrer" hidden
-          >${t(p.source ?? '')}</a
-        >
+        <span data-source-slot data-label="${l('source')}"></span>
       </p>
     </div>
   </div>`;
