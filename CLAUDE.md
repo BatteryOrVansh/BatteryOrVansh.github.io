@@ -102,8 +102,14 @@ python3 scripts/make_demo_tracks.py   # regenerate the demo music
 5. No secrets, no files over 5 MB, optimise images before committing.
 6. Update `PROGRESS.md` at every push (Current phase, Done, Next 5 actions,
    Open decisions, How to run and test, Known issues).
-7. No AI attribution trailers in commits or files (Vansh's standing instruction
-   from the old repo).
+7. **No AI attribution anywhere.** No `Co-Authored-By` trailers, no
+   "Generated with" lines, no session links in commits or PR descriptions, and
+   no AI note in the README or docs. Two early commits (`b3b8e8f`, `2042d73`)
+   carry a trailer; pushed history is never rewritten.
+8. Backup of the old site: the `old-site` branch on GitHub (from old `main`,
+   `f3ce870`). Never retry a tag push; DEPLOY.md restore steps use that branch.
+9. Run dev servers and previews in the background, and put a timeout on every command.
+10. Leave `TODO(Vansh)` fields alone: Vansh fills them in himself.
 
 ## Current phase
 

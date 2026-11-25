@@ -51,3 +51,9 @@ old-site-v1` (HTTP 403); branch pushes work. The tag exists locally at
   DEPLOY.md's restore steps must use that branch, not a tag.
 - **Command hygiene:** dev servers and previews run in the background, and every
   command gets a timeout.
+
+## Decisions (Vansh, after phase 2)
+
+- `old-site` branch exists on GitHub (from `f3ce870`). DEPLOY.md restore steps point at it.
+- No AI attribution in commits, PRs, README or docs (rule 7 in CLAUDE.md).
+- TODO(Vansh) fields stay until Vansh finishes the other projects.
