@@ -6,7 +6,12 @@ const path = require('node:path');
 
 const pub = path.join(__dirname, '..', 'public');
 const svg = fs.readFileSync(path.join(pub, 'favicon.svg'), 'utf8');
-const sizes = { 'favicon-32.png': 32, 'apple-touch-icon.png': 180, 'icon-192.png': 192, 'icon-512.png': 512 };
+const sizes = {
+  'favicon-32.png': 32,
+  'apple-touch-icon.png': 180,
+  'icon-192.png': 192,
+  'icon-512.png': 512,
+};
 
 (async () => {
   const b = await chromium.launch();
