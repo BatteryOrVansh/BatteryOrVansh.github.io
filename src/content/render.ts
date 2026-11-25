@@ -2,6 +2,7 @@
 // Pure string functions: imported by build/render-plugin.ts (Node) only.
 import type { Site, SlideId } from './types';
 import { esc, fill, html, t } from './html';
+import { renderPlayer } from './slides/player';
 
 const slideHeading = (site: Site, id: SlideId): string => {
   const slide = site.slides[id];
@@ -48,7 +49,7 @@ export function renderChrome(site: Site): string {
       <span class="visually-hidden">${esc(site.ui.chargeLabel ?? '')}: </span
       ><span data-readout>${Math.round(100 / count)}%</span>
     </p>
-    <div class="chrome__player" id="player-slot"></div>
+    <div class="chrome__player">${renderPlayer(site)}</div>
   </header>`;
 }
 
