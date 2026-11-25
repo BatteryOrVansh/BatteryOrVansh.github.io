@@ -1,0 +1,73 @@
+/* Support styles for src/motion. */
+
+/* hide each cell until the first reveal is armed (JS adds .is-ready; a timer in
+   index.html adds it after 2.5s so a script failure can never leave the page blank) */
+.js:not(.is-ready) .cell__inner {
+  opacity: 0;
+}
+
+.panel,
+.about__copy,
+.about__joining,
+.now__next,
+.boot__line {
+  transform-style: flat;
+  will-change: transform;
+}
+
+/* custom cursor (desktop only; element only exists when enabled) */
+.cursor {
+  position: fixed;
+  inset: 0 auto auto 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+}
+
+.cursor i {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: block;
+  border-radius: 50%;
+  translate: -50% -50%;
+  opacity: 0;
+  transition:
+    opacity var(--dur-mid) var(--ease-out),
+    width var(--dur-mid) var(--ease-out),
+    height var(--dur-mid) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.has-cursor .cursor i {
+  opacity: 1;
+}
+
+.cursor__dot {
+  width: 6px;
+  height: 6px;
+  background: var(--amber);
+}
+
+.cursor__ring {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgb(var(--bone-rgb) / 0.55);
+}
+
+.cursor.is-hot .cursor__ring {
+  width: 58px;
+  height: 58px;
+  border-color: var(--amber);
+  background: rgb(var(--amber-rgb) / 0.1);
+}
+
+.cursor.is-down .cursor__ring {
+  width: 24px;
+  height: 24px;
+}
+
+.has-cursor,
+.has-cursor * {
+  cursor: none !important;
+}
