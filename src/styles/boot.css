@@ -250,3 +250,12 @@
     opacity: 1;
   }
 }
+
+/* phones: the scribble drops under the name, at the right edge */
+@media (max-width: 600px) {
+  .boot__scribble {
+    left: auto;
+    right: var(--gutter);
+    top: 41%;
+  }
+}
