@@ -111,8 +111,8 @@ export function renderDeck(site: Site, bodies: Partial<Record<SlideId, string>> 
       >
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
       </button>
-      <span class="deck__hint mono mono--dim">${t(site.ui.hint ?? '')}</span>
     </div>
+    <span class="deck__hint mono mono--dim">${t(site.ui.hint ?? '')}</span>
     <p class="visually-hidden" id="announcer" aria-live="polite" aria-atomic="true"></p>`;
 }
 
