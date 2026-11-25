@@ -1,0 +1,263 @@
+/* Music player: equalizer toggle (top right) that expands into a glass card. */
+
+.chrome__player {
+  position: relative;
+  justify-self: end;
+}
+
+.player {
+  position: relative;
+}
+
+.player__toggle {
+  width: var(--tap);
+  min-height: var(--tap);
+  border-radius: var(--radius-pill);
+}
+
+/* equalizer: four bars; they move only while a song plays */
+.eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+}
+
+.eq i {
+  display: block;
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--text-faint);
+  transform-origin: 50% 100%;
+  transform: scaleY(var(--h, 0.3));
+  transition: background var(--dur-mid) var(--ease-out);
+}
+
+.eq i:nth-child(1) {
+  --h: 0.35;
+}
+.eq i:nth-child(2) {
+  --h: 0.7;
+}
+.eq i:nth-child(3) {
+  --h: 0.5;
+}
+.eq i:nth-child(4) {
+  --h: 0.85;
+}
+
+[data-playing='true'] .eq i {
+  background: var(--amber);
+  animation: eq-bounce 1s var(--ease-in-out) infinite alternate;
+}
+
+[data-playing='true'] .eq i:nth-child(2) {
+  animation-duration: 0.75s;
+  animation-delay: -0.2s;
+}
+[data-playing='true'] .eq i:nth-child(3) {
+  animation-duration: 1.2s;
+  animation-delay: -0.5s;
+}
+[data-playing='true'] .eq i:nth-child(4) {
+  animation-duration: 0.9s;
+  animation-delay: -0.1s;
+}
+
+@keyframes eq-bounce {
+  from {
+    transform: scaleY(0.2);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-playing='true'] .eq i {
+    animation: none;
+  }
+}
+
+.player__card {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  width: min(22rem, calc(100vw - 2 * var(--gutter)));
+  max-height: calc(100dvh - var(--bar-h) - 2rem);
+  overflow-y: auto;
+  padding: var(--space-m);
+  display: grid;
+  gap: var(--space-2xs);
+  transform-origin: 100% 0;
+}
+
+.player__card[hidden] {
+  display: none;
+}
+
+.player__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.player__title {
+  font-size: var(--step-2);
+  padding-right: 3rem;
+}
+
+.player__artist {
+  margin-bottom: var(--space-2xs);
+}
+
+.player__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player__card svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.player__play {
+  width: 3.25rem;
+  min-height: 3.25rem;
+}
+
+.player__play svg {
+  fill: currentColor;
+}
+
+.player__ic {
+  display: inline-flex;
+}
+
+/* play/pause and mute/unmute icon swaps follow state */
+.player__ic--pause,
+.player__ic--muted {
+  display: none;
+}
+
+[data-on='true'] .player__ic--play {
+  display: none;
+}
+[data-on='true'] .player__ic--pause {
+  display: inline-flex;
+}
+
+[data-muted='true'] .player__ic--vol {
+  display: none;
+}
+[data-muted='true'] .player__ic--muted {
+  display: inline-flex;
+  color: var(--ember);
+}
+
+/* volume slider */
+.player__vol {
+  display: block;
+  padding-block: 0.6rem;
+}
+
+.player__vol input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: var(--tap);
+  background: transparent;
+  cursor: pointer;
+}
+
+.player__vol input::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    var(--amber) var(--fill, 70%),
+    rgb(var(--bone-rgb) / 0.14) var(--fill, 70%)
+  );
+}
+
+.player__vol input::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: rgb(var(--bone-rgb) / 0.14);
+}
+
+.player__vol input::-moz-range-progress {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--amber);
+}
+
+.player__vol input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: var(--bone);
+  box-shadow: 0 0 0 1px var(--amber);
+}
+
+.player__vol input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: var(--bone);
+  box-shadow: 0 0 0 1px var(--amber);
+}
+
+.player__lib-title {
+  margin-top: var(--space-2xs);
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--rule);
+}
+
+.player__list {
+  display: grid;
+}
+
+.player__song {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0.5rem 0.25rem;
+  text-align: left;
+  font-family: var(--font-display);
+  font-variation-settings: var(--fraunces-text);
+  font-size: var(--step-0);
+  color: var(--text-dim);
+  border-radius: var(--radius-s);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.player__song:hover {
+  color: var(--text);
+  background: rgb(var(--bone-rgb) / 0.05);
+}
+
+.player__song[aria-current='true'] {
+  color: var(--amber);
+}
+
+.player__license {
+  margin-top: var(--space-2xs);
+  font-size: 0.62rem;
+  line-height: 1.6;
+}
