@@ -194,6 +194,11 @@ export class Deck {
     target.focus({ preventScroll: true });
   }
 
+  /** put keyboard focus on the active cell's heading */
+  focusCurrent(): void {
+    this.focusCell(this.index);
+  }
+
   private emit(index: number, prev: number, source: Source): void {
     document.dispatchEvent(
       new CustomEvent<DeckChange>('deck:change', {
