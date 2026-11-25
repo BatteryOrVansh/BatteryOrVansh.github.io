@@ -122,3 +122,23 @@
     display: none;
   }
 }
+
+/* focus ring hugs the heading instead of spanning the column */
+.cell [data-focus] {
+  width: fit-content;
+  max-width: 100%;
+}
+
+/* controls sit on a glass pill so scrolling text never collides with them */
+.deck__nav {
+  padding: 0.3rem 0.3rem 0.3rem 1rem;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  background: rgb(var(--ink-rgb) / 0.55);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+.deck__count {
+  margin-right: 0.25rem;
+}
