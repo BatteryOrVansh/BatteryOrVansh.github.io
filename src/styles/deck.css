@@ -75,7 +75,7 @@
   position: fixed;
   right: var(--gutter);
   bottom: calc(var(--space-s) + env(safe-area-inset-bottom));
-  z-index: var(--z-chrome);
+  z-index: calc(var(--z-chrome) - 5); /* below the top chrome, so the player card covers it */
   display: none;
   align-items: center;
   gap: 0.5rem;
@@ -141,4 +141,22 @@
 
 .deck__count {
   margin-right: 0.25rem;
+}
+
+/* short screens (phone landscape): tighter chrome, smaller controls */
+@media (max-height: 500px) {
+  :root {
+    --bar-h: 2.75rem;
+  }
+  .cell {
+    padding-top: calc(var(--bar-h) + env(safe-area-inset-top) + var(--space-xs));
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+  .deck__count {
+    display: none;
+  }
+  .deck__nav {
+    padding: 0.25rem;
+    bottom: calc(0.5rem + env(safe-area-inset-bottom));
+  }
 }
