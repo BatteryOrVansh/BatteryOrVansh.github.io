@@ -6,6 +6,7 @@ const { chromium, devices } = require('playwright');
       ...devices['iPhone 13'],
       reducedMotion: reduced ? 'reduce' : 'no-preference',
     });
+    await ctx.addInitScript(() => localStorage.setItem('bov:v1', JSON.stringify({ seen: true })));
     const p = await ctx.newPage();
     await p.goto('http://localhost:4173/', { waitUntil: 'networkidle' });
     const cdp = await ctx.newCDPSession(p);
