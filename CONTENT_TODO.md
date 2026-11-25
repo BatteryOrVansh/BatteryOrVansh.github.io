@@ -1,12 +1,12 @@
 # CONTENT_TODO
 
-Everything Vansh still needs to fill in or confirm. The site builds and runs
-with these placeholders; TODO strings render as small ember "pending" marks so
-nothing ships unnoticed.
+Everything Vansh still needs to fill in or confirm. The site builds and runs with
+these placeholders; each `TODO(Vansh)` string shows on the page as a small orange
+dashed mark so nothing ships unnoticed.
 
 How to edit: open `content/site.json`, find the path below, replace the
-`TODO(Vansh): ...` string with real text, run `npm run todos` to see what is
-left, then regenerate this list (see the bottom of this file).
+`TODO(Vansh): ...` text with the real text, then run `npm run todos` to see what is
+left. Step-by-step instructions are in `DEPLOY.md` (section 7).
 
 ## In content/site.json
 
@@ -36,16 +36,21 @@ left, then regenerate this list (see the bottom of this file).
 
 ## Outside site.json
 
-- [x] `old-site` branch created on GitHub (done by Vansh).
-      `git tag old-site-v1 f3ce870 && git push origin old-site-v1`
-- [ ] Decide whether the hackathon "field log" on the About cell stays (it is
-      from the old site; keep only what you can talk about).
-- [ ] Confirm the email `officialvanshdixit@gmail.com` should be public on the site.
+- [ ] Resume: drop a PDF at `public/resume.pdf` and set `slides.contact.links[3].href`
+      to `/resume.pdf` (listed above).
+- [ ] Replace the generated demo music with your own tracks, or keep it (see `MUSIC.md`).
+      Remember audio in a public repo can be downloaded by anyone.
+- [ ] Decide whether the hackathon "field log" on the About cell stays. It comes from
+      the old site; keep only what you can talk about in an interview.
+- [ ] Confirm `officialvanshdixit@gmail.com` should be public on the site.
 - [ ] LeetCode: the old site used both `vanshdixit` and `VanshDixit`. Add it to
       `slides.contact.links` if you want it shown, with the right handle.
-- [ ] Replace the demo music with your own tracks (see `MUSIC.md`).
-- [ ] Optional: `public/resume.pdf`.
+- [ ] Decide what to do with the old Vercel project and the old Supabase/Firebase
+      projects (see `DEPLOY.md`, step 2). They are not used by this site.
+- [ ] Custom domain (optional, later): follow `DEPLOY.md` step 6, then update `meta.url`.
+- [ ] After changing your name or one-liner: regenerate the share image with
+      `node scripts/make-og.cjs`.
 
-## Regenerating this list
+## Done
 
-`node scripts/list-todos.mjs --md` prints the site.json section above.
+- [x] `old-site` backup branch created on GitHub.
