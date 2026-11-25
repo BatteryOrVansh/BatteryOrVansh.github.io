@@ -175,8 +175,11 @@
 }
 
 @media (max-width: 520px) {
-  .chrome__brand span {
+  .chrome__brand {
     display: none;
+  }
+  .chrome {
+    grid-template-columns: 1fr auto auto;
   }
 }
 
