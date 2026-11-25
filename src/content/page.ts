@@ -1,6 +1,7 @@
 // Assembles full-page head/body fragments from site.json.
 import type { Site } from './types';
 import { esc } from './html';
+import { renderAbout } from './slides/about';
 import { renderBoot, renderIntro } from './slides/boot';
 import { renderAtmosphere, renderChrome, renderDeck } from './render';
 
@@ -26,7 +27,7 @@ export function renderPage(site: Site, page: 'index' | '404'): PageParts {
       `<a class="skip-link" href="#main">${esc(site.ui.skipToContent ?? '')}</a>`,
       renderAtmosphere(),
       renderChrome(site),
-      renderDeck(site, { boot: renderBoot(site) }),
+      renderDeck(site, { boot: renderBoot(site), about: renderAbout(site) }),
       renderIntro(site),
     ].join('\n'),
   };

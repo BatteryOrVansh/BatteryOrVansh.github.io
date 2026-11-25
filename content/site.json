@@ -28,7 +28,15 @@
     "openProject": "Open {name}",
     "closeProject": "Close {name}",
     "skipToContent": "Skip to content",
-    "noscript": "Navigation works without JavaScript: every cell is listed below as a normal page section."
+    "noscript": "Navigation works without JavaScript: every cell is listed below as a normal page section.",
+    "yearLabel": "year",
+    "roleLabel": "role",
+    "stackLabel": "stack",
+    "linksLabel": "links",
+    "levelLabel": "{n} of 3 cells charged",
+    "projectDialog": "Project details: {name}",
+    "externalHint": "opens in a new tab",
+    "pendingLink": "link pending"
   },
   "slides": {
     "boot": {
