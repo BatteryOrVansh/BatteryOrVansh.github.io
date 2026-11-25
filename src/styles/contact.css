@@ -94,3 +94,14 @@ a.clink:hover svg {
     grid-column: 1 / -1;
   }
 }
+
+@media (max-width: 480px) {
+  .clink {
+    grid-template-columns: 4.25rem 1fr auto;
+    gap: var(--space-2xs);
+  }
+  .clink__v {
+    font-size: var(--step-1);
+    overflow-wrap: break-word;
+  }
+}
