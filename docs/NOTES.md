@@ -115,3 +115,12 @@ old-site-v1` (HTTP 403); branch pushes work. The tag exists locally at
   to "Enter with sound" the instant the buttons appear.
 - **Demo tracks** are generated (64 s each, about 1 MB, MP3 128 kbps) and are
   original synthesis; replace them using MUSIC.md.
+
+## Phase 5/6: fonts
+
+- **Fonts are subset** to Basic Latin plus the punctuation the site uses (quotes,
+  dashes, ellipsis, multiplication sign, bullet, a few arrows), keeping all
+  variable axes (Fraunces: opsz, wght, SOFT, WONK). About 35% smaller
+  (Fraunces 121 to 79 KB, italic 150 to 96 KB). Made with `fonttools`
+  (`pyftsubset --unicodes=... --flavor=woff2`). If new characters appear in
+  site.json, re-subset from the original @fontsource files.
