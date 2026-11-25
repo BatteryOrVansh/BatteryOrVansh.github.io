@@ -29,6 +29,7 @@ export function initIntro(deck: Deck): void {
     return;
   }
 
+  document.documentElement.classList.add('intro-armed');
   const shell = [deck.root, document.querySelector('.chrome')].filter(Boolean) as HTMLElement[];
   shell.forEach((n) => n.setAttribute('inert', ''));
   deck.locked = true;

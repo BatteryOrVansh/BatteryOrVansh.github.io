@@ -14,6 +14,15 @@
       } catch (e) {
         if (!location.hash) document.documentElement.classList.add('has-intro');
       }
+      // failsafes: a script failure must never leave the page hidden or covered
+      setTimeout(function () {
+        var c = document.documentElement.classList;
+        if (!c.contains('has-intro')) c.add('is-ready');
+        else if (!c.contains('intro-armed')) {
+          c.remove('has-intro');
+          c.add('is-ready');
+        }
+      }, 2500);
     </script>
     <link rel="preload" href="/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
     <link
