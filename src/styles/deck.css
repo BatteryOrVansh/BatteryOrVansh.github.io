@@ -160,3 +160,34 @@
     bottom: calc(0.5rem + env(safe-area-inset-bottom));
   }
 }
+
+/* ---------- 404 ---------- */
+.lost {
+  position: relative;
+  z-index: var(--z-deck);
+  min-height: 100dvh;
+  display: grid;
+  align-content: center;
+  gap: var(--space-m);
+  padding: var(--space-xl) var(--gutter);
+  overflow: hidden;
+}
+
+.lost__code {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.1em;
+  font-size: var(--step-numeral);
+}
+
+.lost__copy {
+  position: relative;
+  display: grid;
+  gap: var(--space-s);
+  justify-items: start;
+  max-width: 34rem;
+}
+
+.lost__copy .heading {
+  font-size: var(--step-6);
+}
