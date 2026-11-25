@@ -28,7 +28,6 @@
     "openProject": "Open {name}",
     "closeProject": "Close {name}",
     "skipToContent": "Skip to content",
-    "noscript": "Navigation works without JavaScript: every cell is listed below as a normal page section.",
     "yearLabel": "year",
     "roleLabel": "role",
     "stackLabel": "stack",
