@@ -1,0 +1,255 @@
+/* Boot cell: name set big and split across two lines, the second pushed right
+   so it overlaps the oversized numeral. One-liner sits low-left in glass. */
+
+.cell--boot .cell__inner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto 1fr auto auto;
+  align-content: stretch;
+  min-height: 100%;
+}
+
+.boot {
+  display: contents;
+}
+
+.boot__kicker {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+.boot__name {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  align-self: center;
+  display: grid;
+  width: fit-content;
+  font-size: var(--step-hero);
+  font-weight: 300;
+  padding-block: var(--space-m);
+}
+
+.boot__first {
+  display: block;
+  margin-left: -0.04em;
+}
+
+.boot__last {
+  display: block;
+  margin-left: clamp(2rem, 14vw, 14rem);
+  margin-top: -0.06em;
+}
+
+.boot__line {
+  grid-column: 1 / span 12;
+  grid-row: 3;
+  max-width: 34rem;
+  padding: var(--space-m);
+  margin-bottom: var(--space-m);
+  z-index: 2;
+}
+
+.boot__line .lede {
+  max-width: none;
+}
+
+.boot__note {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  padding-bottom: var(--space-xs);
+}
+
+.boot__arrow {
+  width: 3.5rem;
+  height: auto;
+  rotate: -8deg;
+}
+
+.boot__scribble {
+  position: absolute;
+  /* sits just after the end of "Dixit" (about 2.9 name-widths of the hero size) */
+  left: calc(var(--gutter) + 2.9 * var(--step-hero));
+  top: 37%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  rotate: 6deg;
+  pointer-events: none;
+}
+
+.boot__bolt {
+  width: 1.6rem;
+  height: auto;
+}
+
+.boot__tag {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-variation-settings:
+    'SOFT' 100,
+    'WONK' 1,
+    'opsz' 24;
+  font-size: var(--step-1);
+  color: var(--amber);
+}
+
+@media (min-width: 900px) {
+  .boot__line {
+    grid-column: 1 / span 5;
+  }
+  .boot__note {
+    grid-column: 7 / -1;
+    grid-row: 3 / span 2;
+    align-self: end;
+    justify-content: flex-end;
+  }
+}
+
+/* ---------- intro / sound gate ---------- */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: none;
+  place-items: end start;
+  padding: var(--gutter);
+  padding-bottom: max(var(--gutter), env(safe-area-inset-bottom));
+  background: rgb(var(--ink-rgb) / 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.has-intro .intro {
+  display: grid;
+}
+
+.intro__panel {
+  width: min(100%, 32rem);
+  padding: var(--space-l);
+  display: grid;
+  gap: var(--space-s);
+}
+
+.intro__log {
+  display: grid;
+  gap: 0.15rem;
+  color: var(--text-dim);
+}
+
+.intro__log li {
+  opacity: 0;
+  animation: intro-line 0.01s linear forwards;
+  animation-delay: calc(0.25s + var(--i) * 0.38s);
+}
+
+@keyframes intro-line {
+  to {
+    opacity: 1;
+  }
+}
+
+.intro__battery {
+  padding: 4px;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  position: relative;
+}
+
+.intro__battery::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  translate: 0 -50%;
+  width: 4px;
+  height: 14px;
+  border-radius: 0 2px 2px 0;
+  background: var(--glass-border);
+}
+
+.intro__cells {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+}
+
+.intro__cells i {
+  height: 22px;
+  border-radius: 3px;
+  background: rgb(var(--bone-rgb) / 0.07);
+}
+
+.intro__cells i.is-on {
+  background: var(--amber);
+  box-shadow: 0 0 14px rgb(var(--amber-rgb) / 0.55);
+}
+
+.intro__cells i.is-on:first-child:not(.is-full) {
+  background: var(--ember);
+}
+
+.intro__charged,
+.intro__q,
+.intro__actions {
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 8px;
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    translate var(--dur-slow) var(--ease-out),
+    visibility 0s var(--dur-slow);
+}
+
+.intro.is-ready .intro__charged,
+.intro.is-ready .intro__q,
+.intro.is-ready .intro__actions {
+  opacity: 1;
+  visibility: visible;
+  translate: 0 0;
+  transition-delay: 0s;
+}
+
+.intro.is-ready .intro__q {
+  transition-delay: 0.12s;
+}
+
+.intro.is-ready .intro__actions {
+  transition-delay: 0.24s;
+}
+
+.intro__charged {
+  color: var(--amber);
+}
+
+.intro__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  padding-right: 8px;
+}
+
+.intro__skip {
+  justify-self: start;
+  min-height: var(--tap);
+  padding-inline: 0.5rem;
+  color: var(--text-faint);
+}
+
+.intro.is-ready .intro__skip {
+  display: none;
+}
+
+.intro.is-leaving {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro__log li {
+    animation: none;
+    opacity: 1;
+  }
+}
