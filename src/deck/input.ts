@@ -23,8 +23,20 @@ export function bindInput(deck: Deck): void {
     });
   });
 
-  window.addEventListener('hashchange', () => deck.goTo(deck.indexFromHash(), 'hash'));
-  window.addEventListener('popstate', () => deck.goTo(deck.indexFromHash(), 'hash'));
+  // only react to hashes that name a cell; anything else (e.g. #main) is ignored
+  const onHash = () => {
+    const id = decodeURIComponent(location.hash.replace(/^#/, ''));
+    if (id === '') deck.goTo(0, 'hash');
+    else if (deck.ids.includes(id)) deck.goTo(deck.ids.indexOf(id), 'hash');
+  };
+  window.addEventListener('hashchange', onHash);
+  window.addEventListener('popstate', onHash);
+
+  // skip link: move focus into the current cell instead of changing the hash
+  document.querySelector('.skip-link')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    deck.focusCurrent();
+  });
 
   // keyboard
   document.addEventListener('keydown', (e) => {
