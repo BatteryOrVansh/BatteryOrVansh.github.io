@@ -57,3 +57,18 @@ old-site-v1` (HTTP 403); branch pushes work. The tag exists locally at
 - `old-site` branch exists on GitHub (from `f3ce870`). DEPLOY.md restore steps point at it.
 - No AI attribution in commits, PRs, README or docs (rule 7 in CLAUDE.md).
 - TODO(Vansh) fields stay until Vansh finishes the other projects.
+
+## Phase 3: Boot cell
+
+- **Intro shows on a first visit only, and not on a deep link.** An inline
+  script in `index.html` adds `has-intro` before first paint (state key
+  `bov:v1`, shared with `src/state.ts`), so returning visitors never see a flash
+  of overlay and Lighthouse isn't measuring a covered page. Returning visitors
+  with a saved sound choice resume on their first interaction (player, phase 4).
+- **"Skip intro" skips the animation, not the choice.** It lights the battery
+  and reveals the two buttons at once (also Esc). Skipping entirely is "Enter
+  silent". Why: the gate must stay a real user gesture for audio.
+- **Deck and top bar are `inert` while the intro is open**, focus starts on
+  Skip, then moves to "Enter with sound" when the buttons appear.
+- **Boot cell decoration** ("that's me" scribble, fig. caption) comes from
+  site.json (`scribble`, `annotation`), so copy stays in one place.
