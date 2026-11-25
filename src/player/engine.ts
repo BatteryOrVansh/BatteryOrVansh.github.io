@@ -258,7 +258,7 @@ export class Engine {
       off();
       if (!this.state.on || !this.state.playing) void this.start();
     };
-    const events = ['pointerdown', 'keydown', 'touchend'] as const;
+    const events = ['pointerdown', 'click', 'keydown', 'touchend'] as const;
     const off = () => events.forEach((e) => window.removeEventListener(e, go, true));
     events.forEach((e) => window.addEventListener(e, go, { capture: true, once: false }));
   }
